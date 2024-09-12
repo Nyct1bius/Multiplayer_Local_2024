@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BossStatus : MonoBehaviour
 {
+    
+    public string _name;
 
     public int _life;
     public int _damage;

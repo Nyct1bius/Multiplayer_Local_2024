@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PersonagemStatus : MonoBehaviour
 {
+    
+    public string _name;
 
     [SerializeField]
     GameManager gameManager;

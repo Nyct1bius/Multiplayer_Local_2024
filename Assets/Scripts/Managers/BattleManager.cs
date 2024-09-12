@@ -14,6 +14,11 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     PersonagemStatus _status;
 
+    [SerializeField]
+    PersonagemStatus _status2;
+
+    public TextMeshProUGUI NameText;
+
     [Header("StatusText")]
     public TextMeshProUGUI HpText;
     public TextMeshProUGUI AtkText;
@@ -46,6 +51,11 @@ public class BattleManager : MonoBehaviour
                     Player1Status();
                     _statusUI.SetActive(true);
                 }
+                else if(hit.transform.CompareTag("Player2"))
+                {
+                    Player2Status();
+                    _statusUI.SetActive(true);
+                }
                 else
                 {
                     _statusUI.SetActive(false);
@@ -56,10 +66,21 @@ public class BattleManager : MonoBehaviour
 
     void Player1Status()
     {
+        NameText.text = _status._name.ToString();
         HpText.text = _status._life.ToString();
         AtkText.text = _status._damage.ToString();
         DefText.text = _status._defense.ToString();
         SpAtkText.text = _status._magicDamage.ToString();
         SpDefText.text = _status._magicDefense.ToString();
+    }
+
+    void Player2Status()
+    {
+        NameText.text = _status2._name;
+        HpText.text = _status2._life.ToString();
+        AtkText.text = _status2._damage.ToString();
+        DefText.text = _status2._defense.ToString();
+        SpAtkText.text = _status2._magicDamage.ToString();
+        SpDefText.text = _status2._magicDefense.ToString();
     }
 }
