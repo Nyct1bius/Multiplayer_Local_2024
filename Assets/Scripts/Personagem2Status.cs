@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PersonagemStatus : MonoBehaviour
+public class Personagem2Status : MonoBehaviour
 {
-    
     public string _name;
 
     public bool[] _blessing;
@@ -13,11 +12,11 @@ public class PersonagemStatus : MonoBehaviour
     [SerializeField]
     GameManager gameManager;
     // status
-    public float _life = 1000;
-    public float _damage = 350;
-    public float _defense = 100;
-    public float _spDamage = 500;
-    public float _spDefense = 150;
+    public float _life;
+    public float _damage;
+    public float _defense;
+    public float _spDamage;
+    public float _spDefense;
     public float _moveArea; // quantos tiles pode mover por rodada 
 
     private float _blessingEfect;
@@ -33,13 +32,13 @@ public class PersonagemStatus : MonoBehaviour
         }
 
 
-        _life = PlayerPrefs.GetFloat("Player1Life");
-        _damage = PlayerPrefs.GetFloat("Player1Damage");
-        _defense = PlayerPrefs.GetFloat("Player1Defense");
-        _spDamage = PlayerPrefs.GetFloat("Player1spDamage");
-        _spDefense = PlayerPrefs.GetFloat("Player1spDefense");
+        _life = PlayerPrefs.GetFloat("Player2Life");
+        _damage = PlayerPrefs.GetFloat("Player2Damage");
+        _defense = PlayerPrefs.GetFloat("Player2Defense");
+        _spDamage = PlayerPrefs.GetFloat("Player2spDamage");
+        _spDefense = PlayerPrefs.GetFloat("Player2spDefense");
 
-        if(_life == 0) // primeira batalha
+        if (_life == 0) // primeira batalha
         {
             _life = 1000;
             _damage = 350;
@@ -97,7 +96,7 @@ public class PersonagemStatus : MonoBehaviour
 
     public void ReciveDamage(float damage, bool magic)
     {
-        if(magic)
+        if (magic)
         {
             damage /= _spDefense;
             _currentLife -= damage;

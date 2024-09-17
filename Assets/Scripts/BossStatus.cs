@@ -7,13 +7,13 @@ public class BossStatus : MonoBehaviour
     
     public string _name;
 
-    public int _life;
-    public int _damage;
-    public int _defense;
-    public int _magicDamage;
-    public int _magicDefense;
+    public float _life;
+    public float _damage;
+    public float _defense;
+    public float _magicDamage;
+    public float _magicDefense;
 
-    public int _currentLife;
+    public float _currentLife;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class BossStatus : MonoBehaviour
         
     }
 
-    public void ReciveDamage(int damage, bool magic)
+    public void ReciveDamage(float damage, bool magic)
     {
         if (magic)
         {

@@ -67,14 +67,19 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    void Fim()
+    {
+
+    }
+
     void Player1Status()
     {
         NameText.text = _status._name.ToString();
         HpText.text = _status._life.ToString();
         AtkText.text = _status._damage.ToString();
         DefText.text = _status._defense.ToString();
-        SpAtkText.text = _status._magicDamage.ToString();
-        SpDefText.text = _status._magicDefense.ToString();
+        SpAtkText.text = _status._spDamage.ToString();
+        SpDefText.text = _status._spDefense.ToString();
     }
 
     void Player2Status()
@@ -83,8 +88,8 @@ public class BattleManager : MonoBehaviour
         HpText.text = _status2._life.ToString();
         AtkText.text = _status2._damage.ToString();
         DefText.text = _status2._defense.ToString();
-        SpAtkText.text = _status2._magicDamage.ToString();
-        SpDefText.text = _status2._magicDefense.ToString();
+        SpAtkText.text = _status2._spDamage.ToString();
+        SpDefText.text = _status2._spDefense.ToString();
     }
 
     public void SairGame()

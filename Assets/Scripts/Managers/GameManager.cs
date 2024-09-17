@@ -5,8 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public bool[] _blessing;
-
     [SerializeField]
     private int _stage = 0;
     // Start is called before the first frame update
