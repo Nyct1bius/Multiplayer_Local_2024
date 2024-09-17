@@ -24,6 +24,7 @@ public class PersonagemStatus : MonoBehaviour
     private float _curseEfect;
 
     public float _currentLife;
+    public float _player1TD;
 
     void Start()
     {
@@ -66,11 +67,14 @@ public class PersonagemStatus : MonoBehaviour
             _blessingEfect = 1.5f;
         }
 
-        _life *= _blessingEfect;
-        _damage *= _blessingEfect;
-        _defense *= _blessingEfect;
-        _spDamage *= _blessingEfect;
-        _spDefense *= _blessingEfect;
+        if(_blessingEfect > 0)
+        {
+            _life *= _blessingEfect;
+            _damage *= _blessingEfect;
+            _defense *= _blessingEfect;
+            _spDamage *= _blessingEfect;
+            _spDefense *= _blessingEfect;
+        }
     }
 
     public void CurseEfect()
@@ -88,11 +92,14 @@ public class PersonagemStatus : MonoBehaviour
             _curseEfect = 0.9f;
         }
 
-        _life *= _curseEfect;
-        _damage *= _curseEfect;
-        _defense *= _curseEfect;
-        _spDamage *= _curseEfect;
-        _spDefense *= _curseEfect;
+        if (_curseEfect > 0)
+        {
+            _life *= _curseEfect;
+            _damage *= _curseEfect;
+            _defense *= _curseEfect;
+            _spDamage *= _curseEfect;
+            _spDefense *= _curseEfect;
+        }
     }
 
     public void ReciveDamage(float damage, bool magic)

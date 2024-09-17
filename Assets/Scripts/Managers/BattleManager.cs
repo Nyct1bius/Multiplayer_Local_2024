@@ -109,6 +109,7 @@ public class BattleManager : MonoBehaviour
 
     public void Derrota()
     {
+        // os dois levam curse
         SceneManager.LoadScene("Derrota", LoadSceneMode.Additive);
     }
 }

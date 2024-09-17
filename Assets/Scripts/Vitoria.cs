@@ -40,8 +40,8 @@ public class Vitoria : MonoBehaviour
     public TextMeshProUGUI PlusSpAtkText2;
     public TextMeshProUGUI PlusSpDefText2;
 
-    public float _player1TD;
-    public float _player2TD;
+    public TextMeshProUGUI TdDamageText1;
+    public TextMeshProUGUI TdDamageText2;
 
     public bool _calculado = false;
 
@@ -51,16 +51,29 @@ public class Vitoria : MonoBehaviour
         BattleManager = FindAnyObjectByType<BattleManager>();
         GameManager = FindAnyObjectByType<GameManager>();
         PersonagemStatus = FindAnyObjectByType<PersonagemStatus>();
+        Personagem2Status = FindAnyObjectByType<Personagem2Status>();
+
+        StatusToText();
+
+        if (!_calculado)
+        {
+            CalculoTD();
+        }
+
+        PlusStatusToText();
     }
 
     // Update is called once per frame
     void Update()
     {
+       /* StatusToText();
 
-        if(!_calculado)
+        if (!_calculado)
         {
             CalculoTD();
         }
+
+        PlusStatusToText();*/
     }
 
     void CalculoTD()
@@ -75,7 +88,7 @@ public class Vitoria : MonoBehaviour
             Personagem2Status = FindAnyObjectByType<Personagem2Status>();
         }
 
-        if (_player1TD > _player2TD)
+        if (PersonagemStatus._player1TD > Personagem2Status._player2TD)
         {
             // buff personagem 1
             if (!PersonagemStatus._blessing[0])
@@ -107,7 +120,7 @@ public class Vitoria : MonoBehaviour
 
             _calculado = true;
         }
-        else if (_player2TD > _player1TD)
+        else if (Personagem2Status._player2TD > PersonagemStatus._player1TD)
         {
             // buff personagem 2
             if (!Personagem2Status._blessing[0])
@@ -171,5 +184,41 @@ public class Vitoria : MonoBehaviour
         PlayerPrefs.SetFloat("Player2Defense", Personagem2Status._defense);
         PlayerPrefs.SetFloat("Player2spDamage", Personagem2Status._spDamage);
         PlayerPrefs.SetFloat("Player2spDefense", Personagem2Status._spDefense);
+    }
+
+    void StatusToText()
+    {
+        // player1
+        TdDamageText1.text = PersonagemStatus._player1TD.ToString();
+        HpText.text = PersonagemStatus._life.ToString();
+        AtkText.text = PersonagemStatus._damage.ToString();
+        DefText.text = PersonagemStatus._defense.ToString();
+        SpAtkText.text = PersonagemStatus._spDamage.ToString();
+        SpDefText.text = PersonagemStatus._spDefense.ToString();
+
+        // player2
+        TdDamageText2.text = Personagem2Status._player2TD.ToString();
+        HpText2.text = Personagem2Status._life.ToString();
+        AtkText2.text = Personagem2Status._damage.ToString();
+        DefText2.text = Personagem2Status._defense.ToString();
+        SpAtkText2.text = Personagem2Status._spDamage.ToString();
+        SpDefText2.text = Personagem2Status._spDefense.ToString();
+    }
+
+    void PlusStatusToText()
+    {
+        // player1
+        PlusHpText.text = PersonagemStatus._life.ToString();
+        PlusAtkText.text = PersonagemStatus._damage.ToString();
+        PlusDefText.text = PersonagemStatus._defense.ToString();
+        PlusSpAtkText.text = PersonagemStatus._spDamage.ToString();
+        PlusSpDefText.text = PersonagemStatus._spDefense.ToString();
+
+        // player2
+        PlusHpText2.text = Personagem2Status._life.ToString();
+        PlusAtkText2.text = Personagem2Status._damage.ToString();
+        PlusDefText2.text = Personagem2Status._defense.ToString();
+        PlusSpAtkText2.text = Personagem2Status._spDamage.ToString();
+        PlusSpDefText2.text = Personagem2Status._spDefense.ToString();
     }
 }

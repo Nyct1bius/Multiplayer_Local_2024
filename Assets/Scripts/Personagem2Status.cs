@@ -12,17 +12,18 @@ public class Personagem2Status : MonoBehaviour
     [SerializeField]
     GameManager gameManager;
     // status
-    public float _life;
-    public float _damage;
-    public float _defense;
-    public float _spDamage;
-    public float _spDefense;
+    public float _life = 1000;
+    public float _damage = 350;
+    public float _defense = 100;
+    public float _spDamage = 500;
+    public float _spDefense = 150;
     public float _moveArea; // quantos tiles pode mover por rodada 
 
     private float _blessingEfect;
     private float _curseEfect;
 
     public float _currentLife;
+    public float _player2TD;
 
     void Start()
     {
@@ -65,11 +66,14 @@ public class Personagem2Status : MonoBehaviour
             _blessingEfect = 1.5f;
         }
 
-        _life *= _blessingEfect;
-        _damage *= _blessingEfect;
-        _defense *= _blessingEfect;
-        _spDamage *= _blessingEfect;
-        _spDefense *= _blessingEfect;
+        if (_blessingEfect > 0)
+        {
+            _life *= _blessingEfect;
+            _damage *= _blessingEfect;
+            _defense *= _blessingEfect;
+            _spDamage *= _blessingEfect;
+            _spDefense *= _blessingEfect;
+        }
     }
 
     public void CurseEfect()
@@ -87,11 +91,14 @@ public class Personagem2Status : MonoBehaviour
             _curseEfect = 0.9f;
         }
 
-        _life *= _curseEfect;
-        _damage *= _curseEfect;
-        _defense *= _curseEfect;
-        _spDamage *= _curseEfect;
-        _spDefense *= _curseEfect;
+        if (_curseEfect > 0)
+        {
+            _life *= _curseEfect;
+            _damage *= _curseEfect;
+            _defense *= _curseEfect;
+            _spDamage *= _curseEfect;
+            _spDefense *= _curseEfect;
+        }
     }
 
     public void ReciveDamage(float damage, bool magic)
