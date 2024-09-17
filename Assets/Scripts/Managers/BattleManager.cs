@@ -17,6 +17,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     PersonagemStatus _status2;
 
+    public float _player1TD; // total damage
+    public float _player2TD;
+
     public TextMeshProUGUI NameText;
 
     [Header("StatusText")]
@@ -82,5 +85,25 @@ public class BattleManager : MonoBehaviour
         DefText.text = _status2._defense.ToString();
         SpAtkText.text = _status2._magicDamage.ToString();
         SpDefText.text = _status2._magicDefense.ToString();
+    }
+
+    public void SairGame()
+    {
+        
+    }
+
+    public void VoltarMenu()
+    {
+        SceneManager.LoadScene("");
+    }
+
+    public void Vitoria()
+    {
+        SceneManager.LoadScene("Vitoria", LoadSceneMode.Additive);
+    }
+
+    public void Derrota()
+    {
+        SceneManager.LoadScene("Derrota", LoadSceneMode.Additive);
     }
 }
