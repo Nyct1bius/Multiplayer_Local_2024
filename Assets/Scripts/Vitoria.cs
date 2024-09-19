@@ -62,13 +62,13 @@ public class Vitoria : MonoBehaviour
 
         PlusStatusToText();
 
-        if(GameManager._stage < 2)
+        if(GameManager._stage <= 2)
         {
             GameManager._stage++;
             PlayerPrefs.SetInt("Stage", GameManager._stage);
         }
 
-        if(GameManager._stage >= 2)
+        if(GameManager._stage > 2)
         {
             Fim();
         }
@@ -99,7 +99,7 @@ public class Vitoria : MonoBehaviour
             Personagem2Status = FindAnyObjectByType<Personagem2Status>();
         }
 
-        if (PersonagemStatus._player1TD > Personagem2Status._player2TD)
+        if (BattleManager._player1TD > BattleManager._player2TD)
         {
             // buff personagem 1
             if (!PersonagemStatus._blessing[0])
@@ -131,7 +131,7 @@ public class Vitoria : MonoBehaviour
 
             _calculado = true;
         }
-        else if (Personagem2Status._player2TD > PersonagemStatus._player1TD)
+        else if (BattleManager._player2TD > BattleManager._player1TD)
         {
             // buff personagem 2
             if (!Personagem2Status._blessing[0])
@@ -200,7 +200,7 @@ public class Vitoria : MonoBehaviour
     void StatusToText()
     {
         // player1
-        TdDamageText1.text = PersonagemStatus._player1TD.ToString();
+        TdDamageText1.text = BattleManager._player1TD.ToString();
         HpText.text = PersonagemStatus._life.ToString();
         AtkText.text = PersonagemStatus._damage.ToString();
         DefText.text = PersonagemStatus._defense.ToString();
@@ -208,7 +208,7 @@ public class Vitoria : MonoBehaviour
         SpDefText.text = PersonagemStatus._spDefense.ToString();
 
         // player2
-        TdDamageText2.text = Personagem2Status._player2TD.ToString();
+        TdDamageText2.text = BattleManager._player2TD.ToString();
         HpText2.text = Personagem2Status._life.ToString();
         AtkText2.text = Personagem2Status._damage.ToString();
         DefText2.text = Personagem2Status._defense.ToString();
@@ -256,5 +256,15 @@ public class Vitoria : MonoBehaviour
         ResetaStatus();
         GameManager._stage = 0;
         PlayerPrefs.SetInt("Stage", GameManager._stage);
+    }
+
+    public void Voltar()
+    {
+        SceneManager.LoadScene("");
+    }
+
+    public void Continuar()
+    {
+        SceneManager.LoadScene("TestesM");
     }
 }
