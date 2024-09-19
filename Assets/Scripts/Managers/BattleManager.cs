@@ -12,13 +12,16 @@ public class BattleManager : MonoBehaviour
     GameObject _statusUI;
 
     [SerializeField]
+    TurnManager _turnManager;
+
+    [SerializeField]
     PersonagemStatus _status;
 
     [SerializeField]
-    PersonagemStatus _status2;
+    Personagem2Status _status2;
 
-    public float _player1TD; // total damage
-    public float _player2TD;
+    public float _player1TD = 0; // total damage
+    public float _player2TD = 0;
 
     public TextMeshProUGUI NameText;
 
@@ -28,6 +31,10 @@ public class BattleManager : MonoBehaviour
     public TextMeshProUGUI DefText;
     public TextMeshProUGUI SpAtkText;
     public TextMeshProUGUI SpDefText;
+
+    public GameObject _attackBox1;
+    public GameObject _attackBox2;
+    public GameObject _closeButton;
 
     // Start is called before the first frame update
     void Start()
@@ -48,20 +55,22 @@ public class BattleManager : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 // Verifica se o objeto clicado tem o componente específico, por exemplo "Player"
-                if (hit.transform.CompareTag("Player"))
+                if (hit.transform.CompareTag("Player") && _turnManager._player1Turn)
                 {
                     Debug.Log("Jogador clicado: " + hit.transform.name);
                     Player1Status();
                     _statusUI.SetActive(true);
+                    _closeButton.SetActive(true);
+                    _attackBox2.SetActive(false);
+                    _attackBox1.SetActive(true);
                 }
-                else if(hit.transform.CompareTag("Player2"))
+                else if(hit.transform.CompareTag("Player2") && _turnManager._player2Turn)
                 {
                     Player2Status();
                     _statusUI.SetActive(true);
-                }
-                else
-                {
-                    _statusUI.SetActive(false);
+                    _closeButton.SetActive(true);
+                    _attackBox1.SetActive(false);
+                    _attackBox2.SetActive(true);
                 }
             }
         }

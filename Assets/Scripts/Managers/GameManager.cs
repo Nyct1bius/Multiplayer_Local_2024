@@ -5,27 +5,17 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    [SerializeField]
-    private int _stage = 0;
+    
+    public int _stage = 0; // quando chegar no 3 reinicia o jogo
     // Start is called before the first frame update
     void Start()
     {
-        LoadGame();
+        _stage = PlayerPrefs.GetInt("Stage");
     }
 
     // Update is called once per frame
     void Update()
     {
         
-    }
-
-    public void SaveGame()
-    {
-        PlayerPrefs.SetInt("Stage", _stage);
-    }
-
-    public void LoadGame()
-    {
-        _stage = PlayerPrefs.GetInt("Stage");
     }
 }

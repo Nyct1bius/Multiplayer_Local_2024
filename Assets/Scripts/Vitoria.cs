@@ -61,6 +61,17 @@ public class Vitoria : MonoBehaviour
         }
 
         PlusStatusToText();
+
+        if(GameManager._stage < 2)
+        {
+            GameManager._stage++;
+            PlayerPrefs.SetInt("Stage", GameManager._stage);
+        }
+
+        if(GameManager._stage >= 2)
+        {
+            Fim();
+        }
     }
 
     // Update is called once per frame
@@ -220,5 +231,30 @@ public class Vitoria : MonoBehaviour
         PlusDefText2.text = Personagem2Status._defense.ToString();
         PlusSpAtkText2.text = Personagem2Status._spDamage.ToString();
         PlusSpDefText2.text = Personagem2Status._spDefense.ToString();
+    }
+
+    void ResetaStatus()
+    {
+        // player1
+        PlayerPrefs.SetFloat("Player1Life", 1000);
+        PlayerPrefs.SetFloat("Player1Damage", 350);
+        PlayerPrefs.SetFloat("Player1Defense", 100);
+        PlayerPrefs.SetFloat("Player1spDamage", 500);
+        PlayerPrefs.SetFloat("Player1spDefense", 150);
+
+        // player2
+        PlayerPrefs.SetFloat("Player2Life", 1000);
+        PlayerPrefs.SetFloat("Player2Damage", 350);
+        PlayerPrefs.SetFloat("Player2Defense", 100);
+        PlayerPrefs.SetFloat("Player2spDamage", 500);
+        PlayerPrefs.SetFloat("Player2spDefense", 150);
+    }
+
+    public void Fim()
+    {
+        // se stage for 3 reinicia o jogo 
+        ResetaStatus();
+        GameManager._stage = 0;
+        PlayerPrefs.SetInt("Stage", GameManager._stage);
     }
 }

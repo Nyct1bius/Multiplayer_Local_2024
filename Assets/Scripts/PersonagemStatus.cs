@@ -12,6 +12,9 @@ public class PersonagemStatus : MonoBehaviour
 
     [SerializeField]
     GameManager gameManager;
+
+    [SerializeField]
+    BattleManager battleManager;
     // status
     public float _life = 1000;
     public float _damage = 350;
@@ -32,6 +35,8 @@ public class PersonagemStatus : MonoBehaviour
         {
             gameManager = FindAnyObjectByType<GameManager>();
         }
+
+        battleManager = FindAnyObjectByType<BattleManager>();
 
 
         _life = PlayerPrefs.GetFloat("Player1Life");
@@ -102,17 +107,27 @@ public class PersonagemStatus : MonoBehaviour
         }
     }
 
-    public void ReciveDamage(float damage, bool magic)
+    public void ReciveDamage(float damage, bool magic, bool boss)
     {
         if(magic)
         {
             damage /= _spDefense;
             _currentLife -= damage;
+
+            if(!boss)
+            {
+                battleManager._player2TD += damage;
+            }
         }
         else
         {
             damage /= _defense;
             _currentLife -= damage;
+
+            if (!boss)
+            {
+                battleManager._player2TD += damage;
+            }
         }
     }
 }
