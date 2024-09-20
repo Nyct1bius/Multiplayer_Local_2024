@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Vitoria.unity
-    guid: 0476265a104879247836c052166df11f
-  - enabled: 1
     path: Assets/Scenes/TestesM.unity
     guid: 3ca4838d7f5f7474ab67463b0effcd9d
+  - enabled: 1
+    path: Assets/Scenes/Vitoria.unity
+    guid: 0476265a104879247836c052166df11f
   m_configObjects: {}
