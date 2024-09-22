@@ -16,6 +16,7 @@ public class Personagem2Status : MonoBehaviour
     BattleManager battleManager;
     // status
     public float _life = 1000;
+    public float _sp = 500;
     public float _damage = 350;
     public float _defense = 100;
     public float _spDamage = 500;
@@ -26,6 +27,7 @@ public class Personagem2Status : MonoBehaviour
     private float _curseEfect;
 
     public float _currentLife;
+    public float _currentSP;
     public float _player2TD;
 
     void Start()
@@ -38,6 +40,7 @@ public class Personagem2Status : MonoBehaviour
         battleManager = FindAnyObjectByType<BattleManager>();
 
         _life = PlayerPrefs.GetFloat("Player2Life");
+        _sp = PlayerPrefs.GetFloat("Player2SP");
         _damage = PlayerPrefs.GetFloat("Player2Damage");
         _defense = PlayerPrefs.GetFloat("Player2Defense");
         _spDamage = PlayerPrefs.GetFloat("Player2spDamage");
@@ -46,13 +49,20 @@ public class Personagem2Status : MonoBehaviour
         if (_life == 0) // primeira batalha
         {
             _life = 1000;
+            _sp = 500;
             _damage = 350;
             _defense = 100;
             _spDamage = 500;
             _spDefense = 150;
         }
 
+        if (_sp == 0)
+        {
+            _sp = 500;
+        }
+
         _currentLife = _life;
+        _currentSP = _sp;
     }
 
     public void BlessingEfect()
@@ -73,6 +83,7 @@ public class Personagem2Status : MonoBehaviour
         if (_blessingEfect > 0)
         {
             _life *= _blessingEfect;
+            _sp *= _blessingEfect;
             _damage *= _blessingEfect;
             _defense *= _blessingEfect;
             _spDamage *= _blessingEfect;
@@ -98,6 +109,7 @@ public class Personagem2Status : MonoBehaviour
         if (_curseEfect > 0)
         {
             _life *= _curseEfect;
+            _sp *= _curseEfect;
             _damage *= _curseEfect;
             _defense *= _curseEfect;
             _spDamage *= _curseEfect;
@@ -127,5 +139,7 @@ public class Personagem2Status : MonoBehaviour
                 battleManager._player1TD += damage;
             }
         }
+
+        
     }
 }

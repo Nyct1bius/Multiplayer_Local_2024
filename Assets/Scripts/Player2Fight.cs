@@ -42,6 +42,7 @@ public class Player2Fight : MonoBehaviour
         boss.ReciveDamage(status2._damage + damage, false, false);
 
         // usar attack normal recupera um pouco de sp
+        status2._currentSP += 50;
 
         turnManager._player1Turn = true;
         turnManager._player2Turn = false;
@@ -50,6 +51,7 @@ public class Player2Fight : MonoBehaviour
     public void Defender()
     {
         // Aumenta a defesa ate a proxima rodada
+        status2._currentSP += 100;
 
         turnManager._player1Turn = true;
         turnManager._player2Turn = false;
@@ -59,35 +61,47 @@ public class Player2Fight : MonoBehaviour
     {
         float damage = 500;
 
-        boss.ReciveDamage(status2._spDamage + damage, true, false);
+        if(status2._currentSP >= 50)
+        {
+            boss.ReciveDamage(status2._spDamage + damage, true, false);
 
-        // diminuir sp
+            // diminuir sp
+            status2._currentSP -= 50;
 
-        turnManager._player1Turn = true;
-        turnManager._player2Turn = false;
+            turnManager._player1Turn = true;
+            turnManager._player2Turn = false;
+        }
     }
 
     public void SpAttack2()
     {
         float damage = 1000;
 
-        boss.ReciveDamage(status2._spDamage + damage, true, false);
+        if (status2._currentSP >= 100)
+        {
+            boss.ReciveDamage(status2._spDamage + damage, true, false);
 
-        // diminuir sp
+            // diminuir sp
+            status2._currentSP -= 100;
 
-        turnManager._player1Turn = true;
-        turnManager._player2Turn = false;
+            turnManager._player1Turn = true;
+            turnManager._player2Turn = false;
+        }
     }
 
     public void SpAttack3()
     {
         float damage = 2000;
 
-        boss.ReciveDamage(status2._spDamage + damage, true, false);
+        if (status2._currentSP >= 150)
+        {
+            boss.ReciveDamage(status2._spDamage + damage, true, false);
 
-        // diminuir sp
+            // diminuir sp
+            status2._currentSP -= 150;
 
-        turnManager._player1Turn = true;
-        turnManager._player2Turn = false;
+            turnManager._player1Turn = true;
+            turnManager._player2Turn = false;
+        }
     }
 }

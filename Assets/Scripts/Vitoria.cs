@@ -184,6 +184,7 @@ public class Vitoria : MonoBehaviour
     {
         // player1
         PlayerPrefs.SetFloat("Player1Life", PersonagemStatus._life);
+        PlayerPrefs.SetFloat("Player1SP", PersonagemStatus._sp);
         PlayerPrefs.SetFloat("Player1Damage", PersonagemStatus._damage);
         PlayerPrefs.SetFloat("Player1Defense", PersonagemStatus._defense);
         PlayerPrefs.SetFloat("Player1spDamage", PersonagemStatus._spDamage);
@@ -191,6 +192,7 @@ public class Vitoria : MonoBehaviour
 
         // player2
         PlayerPrefs.SetFloat("Player2Life", Personagem2Status._life);
+        PlayerPrefs.SetFloat("Player2SP", Personagem2Status._sp);
         PlayerPrefs.SetFloat("Player2Damage", Personagem2Status._damage);
         PlayerPrefs.SetFloat("Player2Defense", Personagem2Status._defense);
         PlayerPrefs.SetFloat("Player2spDamage", Personagem2Status._spDamage);

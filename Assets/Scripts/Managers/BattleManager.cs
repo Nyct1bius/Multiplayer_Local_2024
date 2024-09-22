@@ -20,6 +20,17 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     Personagem2Status _status2;
 
+    [SerializeField]
+    BossStatus _boss;
+
+    [SerializeField]
+    HealthBar _healthBar;
+    [SerializeField]
+    SpecialBar _specialBar;
+
+    public Slider _hpSlider;
+    public Slider _spSlider;
+
     public float _player1TD = 0; // total damage
     public float _player2TD = 0;
 
@@ -35,6 +46,9 @@ public class BattleManager : MonoBehaviour
     public GameObject _attackBox1;
     public GameObject _attackBox2;
     public GameObject _closeButton;
+
+    public TextMeshProUGUI _lifeBarText;
+    public TextMeshProUGUI _spBarText;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +77,13 @@ public class BattleManager : MonoBehaviour
                     _closeButton.SetActive(true);
                     _attackBox2.SetActive(false);
                     _attackBox1.SetActive(true);
+                    _healthBar.SetMaxHealth(_status._life);
+                    _healthBar.SetHealth(_status._currentLife);
+                    _lifeBarText.text = _status._currentLife.ToString();
+                    _specialBar.SetMaxSpecial(_status._sp);
+                    _specialBar.SetSpecial(_status._currentSP);
+                    _spBarText.text = _status._currentSP.ToString();
+
                 }
                 else if(hit.transform.CompareTag("Player2") && _turnManager._player2Turn)
                 {
@@ -71,15 +92,27 @@ public class BattleManager : MonoBehaviour
                     _closeButton.SetActive(true);
                     _attackBox1.SetActive(false);
                     _attackBox2.SetActive(true);
+                    _healthBar.SetMaxHealth(_status2._life);
+                    _healthBar.SetHealth(_status2._currentLife);
+                    _lifeBarText.text = _status2._currentLife.ToString();
+                    _specialBar.SetMaxSpecial(_status2._sp);
+                    _specialBar.SetSpecial(_status2._currentSP);
+                    _spBarText.text = _status2._currentSP.ToString();
                 }
             }
         }
-    }
 
-    void Fim()
-    {
+        if (_status._currentLife <= 0 && _status2._currentLife <= 0)
+        {
+            Derrota();
+        }
 
+        if(_boss._currentLife <= 0)
+        {
+            Vitoria();
+        }
     }
+    
 
     void Player1Status()
     {
