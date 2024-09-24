@@ -21,6 +21,12 @@ public class BattleManager : MonoBehaviour
     Personagem2Status _status2;
 
     [SerializeField]
+    PlayerFight _playerFight;
+
+    [SerializeField]
+    Player2Fight _player2Fight;
+
+    [SerializeField]
     BossStatus _boss;
 
     [SerializeField]
@@ -69,7 +75,7 @@ public class BattleManager : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 // Verifica se o objeto clicado tem o componente específico, por exemplo "Player"
-                if (hit.transform.CompareTag("Player") && _turnManager._player1Turn)
+                if (hit.transform.CompareTag("Player") && _turnManager._player1Turn && !_playerFight.selected)
                 {
                     Debug.Log("Jogador clicado: " + hit.transform.name);
                     Player1Status();
@@ -85,7 +91,7 @@ public class BattleManager : MonoBehaviour
                     _spBarText.text = _status._currentSP.ToString();
 
                 }
-                else if(hit.transform.CompareTag("Player2") && _turnManager._player2Turn)
+                else if(hit.transform.CompareTag("Player2") && _turnManager._player2Turn && !_player2Fight.selected)
                 {
                     Player2Status();
                     _statusUI.SetActive(true);
@@ -137,6 +143,34 @@ public class BattleManager : MonoBehaviour
     public void SairGame()
     {
         
+    }
+
+    public void EndTurn()
+    {
+        if(_turnManager._player1Turn)
+        {
+            _turnManager._player1Turn = false;
+            _turnManager._bossTurn = false;
+            _turnManager._player2Turn = true;
+            _playerFight.selected = false;
+            _player2Fight.selected = false;
+        }
+        else if(_turnManager._player2Turn)
+        {
+            _turnManager._player2Turn = false;
+            _turnManager._bossTurn = true;
+            _turnManager._player1Turn = false;
+            _playerFight.selected = false;
+            _player2Fight.selected = false;
+        }
+        else // boss turn
+        {
+            _turnManager._player2Turn = false;
+            _turnManager._bossTurn = false;
+            _turnManager._player1Turn = true;
+            _playerFight.selected = false;
+            _player2Fight.selected = false;
+        }
     }
 
     public void VoltarMenu()

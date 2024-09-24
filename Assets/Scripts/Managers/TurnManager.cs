@@ -9,7 +9,8 @@ public class TurnManager : MonoBehaviour
     PlayerFight PlayerFight;
 
     public bool _player1Turn = true;
-    public bool _player2Turn = false;  
+    public bool _player2Turn = false; 
+    public bool _bossTurn = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class TurnManager : MonoBehaviour
 
         _player1Turn = true;
         _player2Turn = false;
+        _bossTurn = false;
     }
 
     // Update is called once per frame

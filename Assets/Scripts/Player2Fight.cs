@@ -12,6 +12,8 @@ public class Player2Fight : MonoBehaviour
 
     [SerializeField]
     TurnManager turnManager;
+
+    public bool selected = false;
     void Start()
     {
         status2 = GetComponent<Personagem2Status>();
@@ -39,53 +41,79 @@ public class Player2Fight : MonoBehaviour
     {
         float damage = 300;
 
-        boss.ReciveDamage(status2._damage + damage, false, false);
+        if (!selected)
+        {
+            boss.ReciveDamage(status2._damage + damage, false, false);
 
-        // usar attack normal recupera um pouco de sp
-        status2._currentSP += 50;
+            // usar attack normal recupera um pouco de sp
+            status2._currentSP += 50; // botar limite
 
-        turnManager._player1Turn = true;
-        turnManager._player2Turn = false;
+            selected = true;
+        }
+
+
+        /* turnManager._player1Turn = false;
+         turnManager._player2Turn = true;*/
     }
 
     public void Defender()
     {
-        // Aumenta a defesa ate a proxima rodada
-        status2._currentSP += 100;
 
-        turnManager._player1Turn = true;
-        turnManager._player2Turn = false;
+        if (!selected)
+        {
+            // Aumenta a defesa ate a proxima rodada e recupera mais SP
+            status2._defense *= 2;
+            status2._currentSP += 100;
+
+            selected = true;
+        }
+
+
+        /* turnManager._player1Turn = false;
+        turnManager._player2Turn = true;*/
     }
 
     public void SpAttack1()
     {
         float damage = 500;
 
-        if(status2._currentSP >= 50)
+        if (!selected)
         {
-            boss.ReciveDamage(status2._spDamage + damage, true, false);
+            if (status2._currentSP >= 50)
+            {
+                boss.ReciveDamage(status2._spDamage + damage, true, false);
 
-            // diminuir sp
-            status2._currentSP -= 50;
+                // diminuir sp
+                status2._currentSP -= 50;
+                // se jogador estiver a certa distancia do player 2 o ataque vai pergar o player2 tb
 
-            turnManager._player1Turn = true;
-            turnManager._player2Turn = false;
+                selected = true;
+                /* turnManager._player1Turn = false;
+                   turnManager._player2Turn = true;*/
+            }
         }
+
     }
 
     public void SpAttack2()
     {
         float damage = 1000;
 
-        if (status2._currentSP >= 100)
+        if (!selected)
         {
-            boss.ReciveDamage(status2._spDamage + damage, true, false);
+            if (status2._currentSP >= 100)
+            {
+                boss.ReciveDamage(status2._spDamage + damage, true, false);
 
-            // diminuir sp
-            status2._currentSP -= 100;
+                // diminuir sp
+                status2._currentSP -= 100;
 
-            turnManager._player1Turn = true;
-            turnManager._player2Turn = false;
+                // se jogador estiver a certa distancia do player 2 o ataque vai pergar o player2 tb
+
+                selected = true;
+                /* turnManager._player1Turn = false;
+                   turnManager._player2Turn = true;*/
+            }
         }
     }
 
@@ -93,15 +121,22 @@ public class Player2Fight : MonoBehaviour
     {
         float damage = 2000;
 
-        if (status2._currentSP >= 150)
+        if (!selected)
         {
-            boss.ReciveDamage(status2._spDamage + damage, true, false);
+            if (status2._currentSP >= 150)
+            {
+                boss.ReciveDamage(status2._spDamage + damage, true, false);
 
-            // diminuir sp
-            status2._currentSP -= 150;
+                // diminuir sp
+                status2._currentSP -= 150;
 
-            turnManager._player1Turn = true;
-            turnManager._player2Turn = false;
+                // se jogador estiver a certa distancia do player 2 o ataque vai pergar o player2 tb
+
+                selected = true;
+
+                /* turnManager._player1Turn = false;
+                   turnManager._player2Turn = true;*/
+            }
         }
     }
 }
