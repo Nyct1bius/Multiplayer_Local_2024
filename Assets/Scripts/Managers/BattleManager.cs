@@ -142,7 +142,7 @@ public class BattleManager : MonoBehaviour
 
     public void SairGame()
     {
-        
+        Application.Quit();
     }
 
     public void EndTurn()
