@@ -262,7 +262,7 @@ public class Vitoria : MonoBehaviour
 
     public void Voltar()
     {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("Hub_World");
     }
 
     public void Continuar()

@@ -16,6 +16,8 @@ public class PlayerFight : MonoBehaviour
     
     [SerializeField]
     TurnManager turnManager;
+
+    public bool selected = false;
     void Start()
     {
         status = GetComponent<PersonagemStatus>();
@@ -42,59 +44,81 @@ public class PlayerFight : MonoBehaviour
     {
         float damage = 300;
 
-        boss.ReciveDamage(status._damage + damage, false, true);
+        if (!selected)
+        {
+            boss.ReciveDamage(status._damage + damage, false, true);
 
-        // usar attack normal recupera um pouco de sp
-        status._currentSP += 50;
+            // usar attack normal recupera um pouco de sp
+            status._currentSP += 50; // botar limite
+
+            selected = true;
+        }
         
 
-        turnManager._player1Turn = false;
-        turnManager._player2Turn = true;
+       /* turnManager._player1Turn = false;
+        turnManager._player2Turn = true;*/
     }
 
     public void Defender()
     {
-        // Aumenta a defesa ate a proxima rodada e recupera mais SP
-        status._currentSP += 100;
-        
 
-        turnManager._player1Turn = false;
-        turnManager._player2Turn = true;
+        if (!selected)
+        {
+            // Aumenta a defesa ate a proxima rodada e recupera mais SP
+            status._defense *= 2;
+            status._currentSP += 100;
+
+            selected = true;
+        }
+
+
+        /* turnManager._player1Turn = false;
+        turnManager._player2Turn = true;*/
     }
 
     public void SpAttack1()
     {
         float damage = 500;
-        Debug.Log("SpAttack sp: " + status._currentSP);
-
-        if(status._currentSP >= 50)
+        
+        if (!selected)
         {
-            boss.ReciveDamage(status._spDamage + damage, true, true);
+            if (status._currentSP >= 50)
+            {
+                boss.ReciveDamage(status._spDamage + damage, true, true);
 
-            // diminuir sp
-            status._currentSP -= 50;
-            // se jogador estiver a certa distancia do player 2 o ataque vai pergar o player2 tb
+                // diminuir sp
+                status._currentSP -= 50;
+                // se jogador estiver a certa distancia do player 2 o ataque vai pergar o player2 tb
 
-            turnManager._player1Turn = false;
-            turnManager._player2Turn = true;
+                /* turnManager._player1Turn = false;
+                   turnManager._player2Turn = true;*/
+
+                selected = true;
+            }
         }
+
     }
 
     public void SpAttack2()
     {
         float damage = 1000;
 
-        if (status._currentSP >= 100)
+        if (!selected)
         {
-            boss.ReciveDamage(status._spDamage + damage, true, true);
+            if (status._currentSP >= 100)
+            {
+                boss.ReciveDamage(status._spDamage + damage, true, true);
 
-            // diminuir sp
-            status._currentSP -= 100;
-            
-            // se jogador estiver a certa distancia do player 2 o ataque vai pergar o player2 tb
+                // diminuir sp
+                status._currentSP -= 100;
 
-            turnManager._player1Turn = false;
-            turnManager._player2Turn = true;
+                // se jogador estiver a certa distancia do player 2 o ataque vai pergar o player2 tb
+
+                /* turnManager._player1Turn = false;
+                   turnManager._player2Turn = true;*/
+
+                selected = true;
+            }
         }
     }
 
@@ -102,17 +126,22 @@ public class PlayerFight : MonoBehaviour
     {
         float damage = 2000;
 
-        if (status._currentSP >= 150)
+        if (!selected)
         {
-            boss.ReciveDamage(status._spDamage + damage, true, true);
+            if (status._currentSP >= 150)
+            {
+                boss.ReciveDamage(status._spDamage + damage, true, true);
 
-            // diminuir sp
-            status._currentSP -= 150;
-            
-            // se jogador estiver a certa distancia do player 2 o ataque vai pergar o player2 tb
+                // diminuir sp
+                status._currentSP -= 150;
 
-            turnManager._player1Turn = false;
-            turnManager._player2Turn = true;
+                selected = true;
+
+                // se jogador estiver a certa distancia do player 2 o ataque vai pergar o player2 tb
+
+                /* turnManager._player1Turn = false;
+                   turnManager._player2Turn = true;*/
+            }
         }
     }
 }
