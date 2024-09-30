@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class BattleManager : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField]
     BossStatus _boss;
+
+    [SerializeField]
+    AudioManager _audioManager;
 
     [SerializeField]
     HealthBar _healthBar;
@@ -59,7 +63,7 @@ public class BattleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
