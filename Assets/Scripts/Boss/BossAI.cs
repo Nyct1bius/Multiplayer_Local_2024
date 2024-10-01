@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossAI : MonoBehaviour
 {
-    public GameManager BattleManager;
+    public TurnManager TurnManager;
     
     private enum State
     {
@@ -14,17 +14,15 @@ public class BossAI : MonoBehaviour
     }
     private State state;
 
-    [SerializeField] private float health;
-
-    public GameObject player1, player2;
-
-    private GameObject chosenTarget;
+    public GameObject player1, player2, chosenTarget;
 
     [SerializeField] private float maxMeleeDistance;
 
     public bool isAlive = true;
 
     public Animator anim;
+
+    [SerializeField] private GameObject meleeHitbox, projectileSpawn1, projectileSpawn2;
 
     // Start is called before the first frame update
     void Start()
@@ -47,19 +45,6 @@ public class BossAI : MonoBehaviour
                 isAlive = false;
                 anim.SetBool("Dead", true);
                 break;
-        }
-    }
-
-    //Verifica e muda o estado atual da AI
-    private void CheckForNewState()
-    {
-        if (health > 0)
-        {
-            //Verifica os turnos
-        }
-        else
-        {
-            state = State.Dead;
         }
     }
 
@@ -91,5 +76,19 @@ public class BossAI : MonoBehaviour
         {
             anim.SetTrigger("Ranged");
         }
+    }
+
+    private IEnumerator MeleeAttack()
+    {
+        yield return new WaitForSeconds(1.07f);
+
+        meleeHitbox.SetActive(true);
+    }
+
+    private IEnumerator RangedAttack()
+    {
+        yield return new WaitForSeconds(1);
+
+
     }
 }

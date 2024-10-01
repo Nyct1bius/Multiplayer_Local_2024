@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 999, clickableLayers))
         {
-            if (Vector3.Distance(transform.position, originPoint.transform.position) <= 10)
+            if (Vector3.Distance(transform.position, originPoint.transform.position) <= 20)
             {
                 agent.destination = hit.point;
             }
