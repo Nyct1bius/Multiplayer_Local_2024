@@ -20,10 +20,16 @@ public class BossAI : MonoBehaviour
 
     private GameObject chosenTarget;
 
+    [SerializeField] private float maxMeleeDistance;
+
+    public bool isAlive = true;
+
+    public Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim.SetBool("Idle", true);
     }
 
     // Update is called once per frame
@@ -32,15 +38,14 @@ public class BossAI : MonoBehaviour
         switch(state)
         {
             case State.WaitingForTurn:
-                Debug.Log("Chefao esperando vez");
                 break;
             case State.MyTurn:
-                Debug.Log("Vez do chefao");
                 ChooseTarget(Random.Range(0, 2));
-                transform.LookAt(chosenTarget.transform.position);
+                Attack();
                 break;
             case State.Dead:
-                Debug.Log("Chfao morto");
+                isAlive = false;
+                anim.SetBool("Dead", true);
                 break;
         }
     }
@@ -48,16 +53,17 @@ public class BossAI : MonoBehaviour
     //Verifica e muda o estado atual da AI
     private void CheckForNewState()
     {
-        if (health <= 0)
+        if (health > 0)
         {
-            state = State.Dead;
+            //Verifica os turnos
         }
         else
         {
-            
+            state = State.Dead;
         }
     }
 
+    //Escolhe qual dos jogadores atacar
     private void ChooseTarget(float playerDice)
     {
         if (playerDice == 0)
@@ -67,6 +73,23 @@ public class BossAI : MonoBehaviour
         if (playerDice == 1)
         {
             chosenTarget = player2;
+        }
+    }
+
+    //Verificando a distância do player escolhido, espera um delay e ataca
+    private IEnumerator Attack()
+    {
+        yield return new WaitForSeconds(Random.Range(1, 3.5f));
+
+        transform.LookAt(chosenTarget.transform.position);
+
+        if (Vector2.Distance(transform.position, chosenTarget.transform.position) <= maxMeleeDistance)
+        {
+            anim.SetTrigger("Melee");
+        }
+        else
+        {
+            anim.SetTrigger("Ranged");
         }
     }
 }
