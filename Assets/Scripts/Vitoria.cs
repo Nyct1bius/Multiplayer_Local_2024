@@ -43,6 +43,9 @@ public class Vitoria : MonoBehaviour
     public TextMeshProUGUI TdDamageText1;
     public TextMeshProUGUI TdDamageText2;
 
+    [SerializeField]
+    AudioManager _audioManager;
+
     public bool _calculado = false;
 
     // Start is called before the first frame update
@@ -52,6 +55,7 @@ public class Vitoria : MonoBehaviour
         GameManager = FindAnyObjectByType<GameManager>();
         PersonagemStatus = FindAnyObjectByType<PersonagemStatus>();
         Personagem2Status = FindAnyObjectByType<Personagem2Status>();
+        _audioManager = FindAnyObjectByType<AudioManager>();
 
         StatusToText();
 
@@ -262,11 +266,13 @@ public class Vitoria : MonoBehaviour
 
     public void Voltar()
     {
+        _audioManager.PlaySFX(_audioManager.botao);
         SceneManager.LoadScene("Hub_World");
     }
 
     public void Continuar()
     {
+        _audioManager.PlaySFX(_audioManager.botao);
         SceneManager.LoadScene("TestesM");
     }
 }
