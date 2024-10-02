@@ -179,7 +179,7 @@ public class BattleManager : MonoBehaviour
 
     public void VoltarMenu()
     {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("Hub_World");
     }
 
     public void Vitoria()
