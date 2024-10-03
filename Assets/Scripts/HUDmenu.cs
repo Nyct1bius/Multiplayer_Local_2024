@@ -10,6 +10,8 @@ public class HUDmenu : MonoBehaviour
 
     public GameObject _statusBox1;
     public GameObject _statusBox2;
+    public GameObject _tutorialScreen;
+
 
     [Header("Player1")]
     public TextMeshProUGUI HpText;
@@ -44,6 +46,24 @@ public class HUDmenu : MonoBehaviour
     float _defense2 = 100;
     float _spDamage2 = 500;
     float _spDefense2 = 150;
+
+    void Start()
+    {
+        // Verifica se é a primeira vez que o jogador entra no jogo
+        if (!PlayerPrefs.HasKey("FirstTime"))
+        {
+            _tutorialScreen.SetActive(true);
+
+            // Define a chave "FirstTime" para que saibamos que o jogador já entrou no jogo antes
+            PlayerPrefs.SetInt("FirstTime", 1);
+        }
+        else
+        {
+            // Não é a primeira vez que o jogador entra no jogo
+            Debug.Log("veteran player");
+            // Você pode continuar normalmente
+        }
+    }
 
 
     public void StatusShow()
