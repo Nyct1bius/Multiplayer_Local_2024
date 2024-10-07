@@ -44,6 +44,8 @@ public class BattleManager : MonoBehaviour
     public float _player1TD = 0; // total damage
     public float _player2TD = 0;
 
+    public bool _isVictory = false;
+
     public TextMeshProUGUI NameText;
 
     [Header("StatusText")]
@@ -184,7 +186,11 @@ public class BattleManager : MonoBehaviour
 
     public void Vitoria()
     {
-        SceneManager.LoadScene("Vitoria", LoadSceneMode.Additive);
+        if(!_isVictory)
+        {
+            SceneManager.LoadScene("Vitoria", LoadSceneMode.Additive);
+            _isVictory = true;
+        }
     }
 
     public void Derrota()

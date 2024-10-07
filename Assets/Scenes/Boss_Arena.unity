@@ -637,7 +637,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1436660511}
         m_TargetAssemblyTypeName: Player2Fight, Assembly-CSharp
         m_MethodName: Defender
         m_Mode: 1
@@ -1043,7 +1043,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1284719897}
         m_TargetAssemblyTypeName: PlayerFight, Assembly-CSharp
         m_MethodName: NormalAttack
         m_Mode: 1
@@ -1310,7 +1310,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1436660511}
         m_TargetAssemblyTypeName: Player2Fight, Assembly-CSharp
         m_MethodName: SpAttack3
         m_Mode: 1
@@ -4373,7 +4373,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1284719897}
         m_TargetAssemblyTypeName: PlayerFight, Assembly-CSharp
         m_MethodName: SpAttack3
         m_Mode: 1
@@ -6075,7 +6075,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1347809233}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: ButtonClick
         m_Mode: 1
@@ -6087,7 +6087,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1007636643}
         m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
         m_MethodName: EndTurn
         m_Mode: 1
@@ -6665,6 +6665,7 @@ MonoBehaviour:
   _spSlider: {fileID: 1799008664}
   _player1TD: 0
   _player2TD: 0
+  _isVictory: 0
   NameText: {fileID: 1178286471}
   HpText: {fileID: 1179872558}
   AtkText: {fileID: 326590146}
@@ -6782,7 +6783,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1436660511}
         m_TargetAssemblyTypeName: Player2Fight, Assembly-CSharp
         m_MethodName: SpAttack1
         m_Mode: 1
@@ -8495,7 +8496,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1284719897}
         m_TargetAssemblyTypeName: PlayerFight, Assembly-CSharp
         m_MethodName: SpAttack1
         m_Mode: 1
@@ -10728,7 +10729,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1284719897}
         m_TargetAssemblyTypeName: PlayerFight, Assembly-CSharp
         m_MethodName: SpAttack2
         m_Mode: 1
@@ -13671,7 +13672,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1284719897}
         m_TargetAssemblyTypeName: PlayerFight, Assembly-CSharp
         m_MethodName: Defender
         m_Mode: 1
@@ -14049,7 +14050,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1436660511}
         m_TargetAssemblyTypeName: Player2Fight, Assembly-CSharp
         m_MethodName: NormalAttack
         m_Mode: 1
@@ -15316,7 +15317,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1436660511}
         m_TargetAssemblyTypeName: Player2Fight, Assembly-CSharp
         m_MethodName: SpAttack2
         m_Mode: 1
