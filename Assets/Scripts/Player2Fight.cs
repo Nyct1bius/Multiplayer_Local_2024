@@ -1,9 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Player2Fight : MonoBehaviour
 {
+    PlayerCustomActions input;
+    NavMeshAgent agent;
+
+    [SerializeField]
+    LayerMask clickableLayers;
+
+    [SerializeField]
+    private float lookRotationSpeed;
+
+    [SerializeField]
+    GameObject originPoint;
+
     public PersonagemStatus status;
     public Personagem2Status status2;
 
@@ -13,7 +26,63 @@ public class Player2Fight : MonoBehaviour
     [SerializeField]
     TurnManager turnManager;
 
+    [SerializeField]
+    Animator animator;
+
     public bool selected = false;
+
+    private bool canMove = true;
+
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+
+        input = new PlayerCustomActions();
+
+        AssignInputs();
+    }
+
+    private void AssignInputs()
+    {
+        if (canMove)
+        {
+            input.Main.Move.performed += ctx => ClickToMove();
+
+            originPoint.transform.position = transform.position;
+
+            canMove = false;
+        }
+    }
+
+    private void ClickToMove()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 999, clickableLayers))
+        {
+            if (Vector3.Distance(transform.position, originPoint.transform.position) <= 20)
+            {
+                agent.destination = hit.point;
+
+                animator.SetBool("Idle", false);
+                animator.SetBool("Walk", true);
+            }
+            else
+            {
+                agent.ResetPath();
+            }
+        }
+    }
+
+    private void OnEnable()
+    {
+        input.Enable();
+    }
+
+    private void OnDisable()
+    {
+        input.Disable();
+    }
+
     void Start()
     {
         status2 = GetComponent<Personagem2Status>();

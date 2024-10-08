@@ -1,23 +1,88 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerFight : MonoBehaviour
 {
+    PlayerCustomActions input;
+    NavMeshAgent agent;
+
+    [SerializeField]
+    LayerMask clickableLayers;
+
+    [SerializeField]
+    private float lookRotationSpeed;
+
+    [SerializeField]
+    GameObject originPoint;
 
     PersonagemStatus status;
     public Personagem2Status status2;
 
     [SerializeField]
     BossStatus boss;
-
-    [SerializeField]
-    BattleManager battleManager;
     
     [SerializeField]
     TurnManager turnManager;
 
+    [SerializeField]
+    Animator animator;
+
     public bool selected = false;
+
+    private bool canMove = true;
+
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+
+        input = new PlayerCustomActions();
+
+        AssignInputs();
+    }
+
+    private void AssignInputs()
+    {
+        if (canMove)
+        {
+            input.Main.Move.performed += ctx => ClickToMove();
+
+            originPoint.transform.position = transform.position;
+
+            canMove = false;
+        }
+    }
+
+    private void ClickToMove()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 999, clickableLayers))
+        {
+            if (Vector3.Distance(transform.position, originPoint.transform.position) <= 20)
+            {
+                agent.destination = hit.point;
+
+                animator.SetBool("Idle", false);
+                animator.SetBool("Walk", true);
+            }
+            else
+            {
+                agent.ResetPath();
+            }
+        }
+    }
+
+    private void OnEnable()
+    {
+        input.Enable();
+    }
+
+    private void OnDisable()
+    {
+        input.Disable();
+    }
+
     void Start()
     {
         status = GetComponent<PersonagemStatus>();
@@ -48,6 +113,8 @@ public class PlayerFight : MonoBehaviour
         {
             boss.ReciveDamage(status._damage + damage, false, true);
 
+            animator.SetTrigger("Attack");
+
             // usar attack normal recupera um pouco de sp
             status._currentSP += 50; // botar limite
 
@@ -64,6 +131,8 @@ public class PlayerFight : MonoBehaviour
 
         if (!selected)
         {
+            animator.SetTrigger("Attack");
+
             // Aumenta a defesa ate a proxima rodada e recupera mais SP
             status._defense *= 2;
             status._currentSP += 100;
@@ -85,6 +154,8 @@ public class PlayerFight : MonoBehaviour
             if (status._currentSP >= 50)
             {
                 boss.ReciveDamage(status._spDamage + damage, true, true);
+
+                animator.SetTrigger("SuperAttack");
 
                 // diminuir sp
                 status._currentSP -= 50;
@@ -109,6 +180,8 @@ public class PlayerFight : MonoBehaviour
             {
                 boss.ReciveDamage(status._spDamage + damage, true, true);
 
+                animator.SetTrigger("SuperAttack");
+
                 // diminuir sp
                 status._currentSP -= 100;
 
@@ -131,6 +204,8 @@ public class PlayerFight : MonoBehaviour
             if (status._currentSP >= 150)
             {
                 boss.ReciveDamage(status._spDamage + damage, true, true);
+
+                animator.SetTrigger("SuperAttack");
 
                 // diminuir sp
                 status._currentSP -= 150;
