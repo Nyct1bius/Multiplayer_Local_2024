@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12580219, g: 0.0903996, b: 0.29958034, a: 1}
+  m_IndirectSpecularColor: {r: 0.12580213, g: 0.09039947, b: 0.29958034, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2102,9 +2102,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: " O HUD \xE9 a sala onde voc\xEA come\xE7a o jogo. N\xE9la \xE9 possovel
+  m_text: "O HUD \xE9 a sala onde voc\xEA come\xE7a o jogo. Nela \xE9 poss\xEDvel
     conferir os status dos players e avan\xE7ar para a batalha. Para se mover no
-    HUD, basta clicar no local que o personagem ira se mover at\xE9 ele. \n Para
+    HUD, basta clicar no local que o personagem ir\xE1 se mover at\xE9 ele. \n Para
     avan\xE7ar para a batalha, basta mover o personagem at\xE9 o portal acima das
     escadas."
   m_isRightToLeft: 0
@@ -2240,12 +2240,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "...... \xE9 um jogo multiplayer local onde os jogadores podem colaborar
-    ou competir para derrotar o boss. O boss \xE9 sempre o mesmo todas as vezes,
+  m_text: "Arena \xE9 um jogo multiplayer local onde os jogadores podem colaborar
+    ou competir para derrotar o boss. O boss \xE9 sempre o mesmo todas \xE0s vezes,
     mas em um total de 3 vezes, cada vez que os jogadores iniciarem uma batalha,
-    o boss estara bem mais forte que antes. Dessa mesma forma, as ben\xE7\xE3os e
-    maldi\xE7\xF5es podem se acumular at\xE9 3 vezes. \n Ap\xF3s 3 partidas, o jogo
-    se reiniciar\xE1 automaticamente. "
+    o boss estar\xE1 bem mais forte que antes. Dessa mesma forma, as ben\xE7\xE3os
+    e maldi\xE7\xF5es podem se acumular at\xE9 3 vezes. \n Ap\xF3s 3 partidas, o
+    jogo se reiniciar\xE1 automaticamente. "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9482134f13ed94f43903c18367d4dd7e, type: 2}
   m_sharedMaterial: {fileID: -8297880673349665221, guid: 9482134f13ed94f43903c18367d4dd7e, type: 2}
@@ -5185,8 +5185,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -75.27402}
-  m_SizeDelta: {x: -43.40851, y: 119.53839}
+  m_AnchoredPosition: {x: 0, y: -75.9}
+  m_SizeDelta: {x: -101.0853, y: 119.5384}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &490664041
 MonoBehaviour:
@@ -5208,7 +5208,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8e29dae21e9216d4b9c6990856d119a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f26cf92ac7385034c8095549d6a3ca55, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -6380,8 +6380,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 71.6}
-  m_SizeDelta: {x: -141.88184, y: 123.4461}
+  m_AnchoredPosition: {x: 0, y: 74.5}
+  m_SizeDelta: {x: -40.9367, y: 49.0605}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &695982229
 MonoBehaviour:
@@ -6403,7 +6403,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 790013ff65dfef64eb78930a1591ab1d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ade4f0d10394914aa5e64d0cc265f30, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -6455,8 +6455,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -75.27402}
-  m_SizeDelta: {x: -43.40851, y: 119.53839}
+  m_AnchoredPosition: {x: 0, y: -69.76201}
+  m_SizeDelta: {x: -43.4085, y: 108.5144}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &708164613
 MonoBehaviour:
@@ -6478,7 +6478,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8e29dae21e9216d4b9c6990856d119a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7dcb7e76d908e2047a7f47a2d9c8409d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -9250,14 +9250,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "...... \xE9 um jogo de combate por turnos que acontece entre dois jogadores
-    e um boss. O objetivo dos jogadore \xE9 dar a maior quantidade de dano alem de
-    derrotar o boss. O jogador que der a maior quantidade de dano recebera uma ben\xE7\xE3o
-    ao final da partida e ao jogador com menor quantidade de dano sera dado uma maldi\xE7\xE3o.
-    \n Para se movimentar durante o combate basta clicar no local onde deseja ir,
-    mas tome cuidado, pois a movimenta\xE7\xE3o durante o combate \xE9 limitada em
-    compara\xE7\xE3o ao HUD. \n Por fim, para ver os status do jogador e escolher
-    o ataque, basta clicar em cima do personagem na sua vez de jogar."
+  m_text: "Arena \xE9 um jogo de combate por turnos que acontece entre dois jogadores
+    e um boss. O objetivo dos jogadores \xE9 dar a maior quantidade de dano al\xE9m
+    de derrotar o boss. O jogador que der a maior quantidade de dano receber\xE1
+    uma ben\xE7\xE3o ao final da partida e ao jogador com menor quantidade de dano
+    ser\xE1 dada uma maldi\xE7\xE3o. \n Para se movimentar durante o combate, basta
+    clicar no local onde deseja ir, mas tome cuidado, pois a movimenta\xE7\xE3o durante
+    o combate \xE9 limitada em compara\xE7\xE3o ao HUD. \n Por fim, para ver os status
+    do jogador e escolher o ataque, basta clicar em cima do personagem na sua vez
+    de jogar."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9482134f13ed94f43903c18367d4dd7e, type: 2}
   m_sharedMaterial: {fileID: -8297880673349665221, guid: 9482134f13ed94f43903c18367d4dd7e, type: 2}
@@ -9804,7 +9805,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bem vindo a ........
+  m_text: Bem vindo a Arena
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9482134f13ed94f43903c18367d4dd7e, type: 2}
   m_sharedMaterial: {fileID: -8297880673349665221, guid: 9482134f13ed94f43903c18367d4dd7e, type: 2}
@@ -12495,8 +12496,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -75.27402}
-  m_SizeDelta: {x: -43.40851, y: 119.53839}
+  m_AnchoredPosition: {x: 0, y: -73.4}
+  m_SizeDelta: {x: -95.291, y: 119.5384}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1434657904
 MonoBehaviour:
@@ -12518,7 +12519,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8e29dae21e9216d4b9c6990856d119a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f26cf92ac7385034c8095549d6a3ca55, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -13969,11 +13970,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: " Como explicado anteriormente, ao vencer o boss o jogador com mair dano
+  m_text: " Como explicado anteriormente, ao vencer o boss o jogador com maior dano
     ganha uma ben\xE7\xE3o e o com menor dano uma maldi\xE7\xE3o. A ben\xE7\xE3o
     \xE9 um aumento de status gerais do personagem e a maldi\xE7\xE3o \xE9 uma diminui\xE7\xE3o
     nos status gerais do personagem. \n Os status influenciam diretamente o dano
-    e vida dos personagens, ent\xE3o \xE9 sempre bom tentar ficar no topo, mesmo
+    e a vida dos personagens, ent\xE3o \xE9 sempre bom tentar ficar no topo, mesmo
     que isso signifique ter que atacar seu parceiro."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9482134f13ed94f43903c18367d4dd7e, type: 2}
