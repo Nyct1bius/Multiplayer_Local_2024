@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BossAI : MonoBehaviour
 {
-    public TurnManager TurnManager;
+    public TurnManager turnManager;
+    public BattleManager battleManager;
     
     private enum State
     {
@@ -16,13 +17,13 @@ public class BossAI : MonoBehaviour
 
     public GameObject player1, player2, chosenTarget;
 
-    [SerializeField] private float maxMeleeDistance;
-
-    public bool isAlive = true;
+    [SerializeField] private float maxMeleeDistance, attackDelay;
 
     public Animator anim;
 
-    [SerializeField] private GameObject meleeHitbox, projectileSpawn1, projectileSpawn2;
+    [SerializeField] private GameObject meleeHitbox, projectile, projectileSpawn1, projectileSpawn2;
+
+    [SerializeField] private bool choseTarget = false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,18 +37,62 @@ public class BossAI : MonoBehaviour
         switch(state)
         {
             case State.WaitingForTurn:
+                CheckTurns();
+
+                anim.SetBool("Idle", true);
+
+                attackDelay = 2;
                 break;
             case State.MyTurn:
-                ChooseTarget(Random.Range(0, 2));
-                Attack();
+                CheckTurns();
+
+                if (!choseTarget)
+                {
+                    ChooseTarget(Random.Range(0, 2));
+                }
+
+                if (attackDelay <= 0)
+                {
+                    transform.LookAt(chosenTarget.transform.position);
+                    
+                    if (Vector3.Distance(transform.position, chosenTarget.transform.position) <= maxMeleeDistance)
+                    {
+                        anim.SetTrigger("Melee");
+
+                        MeleeAttack();
+                    }
+                    else
+                    {
+                        anim.SetTrigger("Ranged");
+
+                        RangedAttack();
+                    }
+                }
+                else
+                {
+                    attackDelay -= Time.deltaTime;
+                }
                 break;
             case State.Dead:
-                isAlive = false;
+                anim.SetBool("Idle", false);
                 anim.SetBool("Dead", true);
                 break;
         }
     }
-
+    
+    //Verifica se é seu turno
+    private void CheckTurns()
+    {
+        if (turnManager._bossTurn)
+        {
+            state = State.MyTurn;
+        }
+        else
+        {
+            state = State.WaitingForTurn;
+        }
+    }
+    
     //Escolhe qual dos jogadores atacar
     private void ChooseTarget(float playerDice)
     {
@@ -59,23 +104,8 @@ public class BossAI : MonoBehaviour
         {
             chosenTarget = player2;
         }
-    }
 
-    //Verificando a distância do player escolhido, espera um delay e ataca
-    private IEnumerator Attack()
-    {
-        yield return new WaitForSeconds(Random.Range(1, 3.5f));
-
-        transform.LookAt(chosenTarget.transform.position);
-
-        if (Vector2.Distance(transform.position, chosenTarget.transform.position) <= maxMeleeDistance)
-        {
-            anim.SetTrigger("Melee");
-        }
-        else
-        {
-            anim.SetTrigger("Ranged");
-        }
+        choseTarget = true;
     }
 
     private IEnumerator MeleeAttack()
@@ -83,12 +113,21 @@ public class BossAI : MonoBehaviour
         yield return new WaitForSeconds(1.07f);
 
         meleeHitbox.SetActive(true);
+
+        choseTarget = false;
+
+        battleManager.EndTurn();
     }
 
     private IEnumerator RangedAttack()
     {
         yield return new WaitForSeconds(1);
 
+        Instantiate(projectile, projectileSpawn1.transform.position, Quaternion.identity);
+        Instantiate(projectile, projectileSpawn2.transform.position, Quaternion.identity);
 
+        choseTarget = false;
+
+        battleManager.EndTurn();
     }
 }

@@ -29,9 +29,7 @@ public class Player2Fight : MonoBehaviour
     [SerializeField]
     Animator animator;
 
-    public bool selected = false;
-
-    private bool canMove = true;
+    public bool selected = false, canMove = true;
 
     private void Awake()
     {
@@ -43,33 +41,33 @@ public class Player2Fight : MonoBehaviour
     }
 
     private void AssignInputs()
-    {
-        if (canMove)
-        {
-            input.Main.Move.performed += ctx => ClickToMove();
-
-            originPoint.transform.position = transform.position;
-
-            canMove = false;
-        }
+    {            
+        input.Main.Move.performed += ctx => ClickToMove();
     }
 
     private void ClickToMove()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 999, clickableLayers))
+        if (turnManager._player2Turn && canMove)
         {
-            if (Vector3.Distance(transform.position, originPoint.transform.position) <= 20)
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 999, clickableLayers))
             {
-                agent.destination = hit.point;
+                if (Vector3.Distance(transform.position, originPoint.transform.position) <= 20)
+                {
+                    agent.destination = hit.point;
 
-                animator.SetBool("Idle", false);
-                animator.SetBool("Walk", true);
+                    animator.SetBool("Idle", false);
+                    animator.SetBool("Walk", true);
+                }
+                else
+                {
+                    agent.ResetPath();
+                }
             }
-            else
-            {
-                agent.ResetPath();
-            }
+
+            originPoint.transform.position = transform.position;
+
+            canMove = false;
         }
     }
 
@@ -86,7 +84,7 @@ public class Player2Fight : MonoBehaviour
     void Start()
     {
         status2 = GetComponent<Personagem2Status>();
-        turnManager = FindAnyObjectByType<TurnManager>();
+        //turnManager = FindAnyObjectByType<TurnManager>();
         boss = FindAnyObjectByType<BossStatus>();
     }
 

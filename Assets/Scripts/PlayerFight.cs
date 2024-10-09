@@ -29,9 +29,7 @@ public class PlayerFight : MonoBehaviour
     [SerializeField]
     Animator animator;
 
-    public bool selected = false;
-
-    private bool canMove = true;
+    public bool selected = false, canMove = true;
 
     private void Awake()
     {
@@ -43,33 +41,33 @@ public class PlayerFight : MonoBehaviour
     }
 
     private void AssignInputs()
-    {
-        if (canMove)
-        {
-            input.Main.Move.performed += ctx => ClickToMove();
-
-            originPoint.transform.position = transform.position;
-
-            canMove = false;
-        }
+    {                                      
+        input.Main.Move.performed += ctx => ClickToMove();        
     }
 
     private void ClickToMove()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 999, clickableLayers))
+        if (turnManager._player1Turn && canMove)
         {
-            if (Vector3.Distance(transform.position, originPoint.transform.position) <= 20)
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 999, clickableLayers))
             {
-                agent.destination = hit.point;
+                if (Vector3.Distance(transform.position, originPoint.transform.position) <= 20)
+                {
+                    agent.destination = hit.point;
 
-                animator.SetBool("Idle", false);
-                animator.SetBool("Walk", true);
+                    animator.SetBool("Idle", false);
+                    animator.SetBool("Walk", true);
+                }
+                else
+                {
+                    agent.ResetPath();
+                }
             }
-            else
-            {
-                agent.ResetPath();
-            }
+
+            originPoint.transform.position = transform.position;
+
+            canMove = false;
         }
     }
 
@@ -86,23 +84,23 @@ public class PlayerFight : MonoBehaviour
     void Start()
     {
         status = GetComponent<PersonagemStatus>();
-        turnManager = FindAnyObjectByType<TurnManager>();
+        //turnManager = FindAnyObjectByType<TurnManager>();
         boss = FindAnyObjectByType<BossStatus>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       /* if(turnManager._player1Turn)
-        {
-            Debug.Log("player1 turn");
-            if(Input.GetMouseButtonDown(0))
-            {
-                boss.ReciveDamage(status._damage, false, true);
-                turnManager._player1Turn = false;
-                turnManager._player2Turn = true;
-            }
-        }*/
+        /* if(turnManager._player1Turn)
+         {
+             Debug.Log("player1 turn");
+             if(Input.GetMouseButtonDown(0))
+             {
+                 boss.ReciveDamage(status._damage, false, true);
+                 turnManager._player1Turn = false;
+                 turnManager._player2Turn = true;
+             }
+         }*/
     }
 
     public void NormalAttack()

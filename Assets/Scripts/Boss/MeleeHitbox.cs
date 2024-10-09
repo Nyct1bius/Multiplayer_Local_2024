@@ -23,7 +23,7 @@ public class MeleeHitbox : MonoBehaviour
 
     private IEnumerator DisableSelf()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
 
         this.gameObject.SetActive(false);
     }

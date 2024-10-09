@@ -160,6 +160,7 @@ public class BattleManager : MonoBehaviour
             _turnManager._player2Turn = true;
             _playerFight.selected = false;
             _player2Fight.selected = false;
+            _playerFight.canMove = true;
         }
         else if(_turnManager._player2Turn)
         {
@@ -168,6 +169,7 @@ public class BattleManager : MonoBehaviour
             _turnManager._player1Turn = false;
             _playerFight.selected = false;
             _player2Fight.selected = false;
+            _player2Fight.canMove = true;
         }
         else // boss turn
         {
