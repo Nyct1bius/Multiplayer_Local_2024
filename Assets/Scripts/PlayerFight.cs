@@ -57,6 +57,8 @@ public class PlayerFight : MonoBehaviour
                 turnManager._player2Turn = false;
             }
         }*/
+
+        Die();
     }
 
     private void AssignInputs()
@@ -153,6 +155,7 @@ public class PlayerFight : MonoBehaviour
             if (status._currentSP >= 50)
             {
                 boss.ReciveDamage(status._spDamage + damage, true, true);
+                status2.ReciveDamage(status._spDamage + damage, true, true);
 
                 animator.SetTrigger("SuperAttack");
 
@@ -203,6 +206,7 @@ public class PlayerFight : MonoBehaviour
             if (status._currentSP >= 150)
             {
                 boss.ReciveDamage(status._spDamage + damage, true, true);
+                status2.ReciveDamage(status._spDamage + damage, true, true);
 
                 animator.SetTrigger("SuperAttack");
 
@@ -216,6 +220,16 @@ public class PlayerFight : MonoBehaviour
                 /* turnManager._player1Turn = false;
                    turnManager._player2Turn = true;*/
             }
+        }
+    }
+
+    private void Die()
+    {
+        if (status._currentLife <= 0)
+        {
+            animator.SetBool("Idle", false);
+            animator.SetBool("Walk", false);
+            animator.SetBool("Dead", true);
         }
     }
 }

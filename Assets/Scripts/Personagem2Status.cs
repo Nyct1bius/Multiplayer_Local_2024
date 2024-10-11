@@ -51,9 +51,9 @@ public class Personagem2Status : MonoBehaviour
             _life = 1000;
             _sp = 500;
             _damage = 350;
-            _defense = 100;
+            _defense = 5;
             _spDamage = 500;
-            _spDefense = 150;
+            _spDefense = 6;
         }
 
         if (_sp == 0)

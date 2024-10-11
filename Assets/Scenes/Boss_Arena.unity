@@ -8272,6 +8272,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1436660512}
     - target: {fileID: 3242890073339091521, guid: 65ad934b4ef8f2f4c835b575fd133224, type: 3}
+      propertyPath: status3
+      value: 
+      objectReference: {fileID: 1180385170}
+    - target: {fileID: 3242890073339091521, guid: 65ad934b4ef8f2f4c835b575fd133224, type: 3}
       propertyPath: projectile
       value: 
       objectReference: {fileID: 4941477850673582258, guid: ed96716e5aa9f3f49a0dbb9ff727bf92, type: 3}
@@ -8367,7 +8371,7 @@ MonoBehaviour:
   GameManager: {fileID: 1868309613}
   BattleManager: {fileID: 1007636643}
   _name: Bill
-  _life: 5000
+  _life: 600
   _damage: 500
   _defense: 10
   _magicDamage: 600
@@ -9883,7 +9887,7 @@ MonoBehaviour:
   _curse: 000000
   gameManager: {fileID: 1868309613}
   battleManager: {fileID: 1007636643}
-  _life: 1000
+  _life: 300
   _sp: 500
   _damage: 200
   _defense: 5
@@ -10762,7 +10766,7 @@ MonoBehaviour:
   _curse: 000000
   gameManager: {fileID: 1868309613}
   battleManager: {fileID: 1007636643}
-  _life: 1000
+  _life: 300
   _sp: 500
   _damage: 350
   _defense: 5

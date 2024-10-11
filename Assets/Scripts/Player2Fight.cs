@@ -57,6 +57,8 @@ public class Player2Fight : MonoBehaviour
                 turnManager._player2Turn = false;
             }
         }*/
+
+        Die();
     }
 
     private void AssignInputs()
@@ -112,6 +114,8 @@ public class Player2Fight : MonoBehaviour
         {
             boss.ReciveDamage(status2._damage + damage, false, false);
 
+            animator.SetTrigger("Attack");
+
             // usar attack normal recupera um pouco de sp
             status2._currentSP += 50; // botar limite
 
@@ -151,6 +155,7 @@ public class Player2Fight : MonoBehaviour
             if (status2._currentSP >= 50)
             {
                 boss.ReciveDamage(status2._spDamage + damage, true, false);
+                status.ReciveDamage(status2._spDamage + damage, true, true);
 
                 animator.SetTrigger("SuperAttack");
 
@@ -199,6 +204,7 @@ public class Player2Fight : MonoBehaviour
             if (status2._currentSP >= 150)
             {
                 boss.ReciveDamage(status2._spDamage + damage, true, false);
+                status.ReciveDamage(status2._spDamage + damage, true, true);
 
                 animator.SetTrigger("SuperAttack");
 
@@ -212,6 +218,16 @@ public class Player2Fight : MonoBehaviour
                 /* turnManager._player1Turn = false;
                    turnManager._player2Turn = true;*/
             }
+        }
+    }
+
+    private void Die()
+    {
+        if (status._currentLife <= 0)
+        {
+            animator.SetBool("Idle", false);
+            animator.SetBool("Walk", false);
+            animator.SetBool("Dead", true);
         }
     }
 }

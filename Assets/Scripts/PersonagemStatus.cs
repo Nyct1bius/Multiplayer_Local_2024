@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PersonagemStatus : MonoBehaviour
-{
-    
+{    
     public string _name;
 
     public bool[] _blessing;
@@ -19,9 +18,9 @@ public class PersonagemStatus : MonoBehaviour
     public float _life = 1000;
     public float _sp = 500;
     public float _damage = 350;
-    public float _defense = 100;
+    public float _defense = 5;
     public float _spDamage = 500;
-    public float _spDefense = 150;
+    public float _spDefense = 6;
     public float _moveArea; // quantos tiles pode mover por rodada 
 
     private float _blessingEfect;
