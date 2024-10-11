@@ -17,13 +17,20 @@ public class BossAI : MonoBehaviour
 
     public GameObject player1, player2, chosenTarget;
 
-    [SerializeField] private float maxMeleeDistance, attackDelay;
+    public PersonagemStatus status;
+    public Personagem2Status status2;
+
+    [SerializeField]
+    private float maxMeleeDistance, maxAttackDelay;
+    private float attackDelay;
 
     public Animator anim;
 
-    [SerializeField] private GameObject meleeHitbox, projectile, projectileSpawn1, projectileSpawn2;
+    [SerializeField]
+    private GameObject meleeHitbox, projectile, projectileSpawn1, projectileSpawn2;
 
-    [SerializeField] private bool choseTarget = false;
+    [SerializeField]
+    private bool targetWasChosen = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,16 +44,18 @@ public class BossAI : MonoBehaviour
         switch(state)
         {
             case State.WaitingForTurn:
-                CheckTurns();
+                attackDelay = maxAttackDelay;
 
-                anim.SetBool("Idle", true);
+                if (turnManager._bossTurn)
+                {
+                    state = State.MyTurn;
+                }
 
-                attackDelay = 2;
+                Debug.Log("Waiting");
                 break;
-            case State.MyTurn:
-                CheckTurns();
 
-                if (!choseTarget)
+            case State.MyTurn:
+                if (!targetWasChosen)
                 {
                     ChooseTarget(Random.Range(0, 2));
                 }
@@ -57,22 +66,27 @@ public class BossAI : MonoBehaviour
                     
                     if (Vector3.Distance(transform.position, chosenTarget.transform.position) <= maxMeleeDistance)
                     {
-                        anim.SetTrigger("Melee");
-
-                        MeleeAttack();
+                        MeleeAttack();   
                     }
                     else
                     {
-                        anim.SetTrigger("Ranged");
-
                         RangedAttack();
                     }
+
+                    state = State.WaitingForTurn;
+
+                    battleManager.EndTurn();
+
+                    targetWasChosen = false;
                 }
                 else
                 {
                     attackDelay -= Time.deltaTime;
                 }
+
+                Debug.Log("MyTurn");
                 break;
+
             case State.Dead:
                 anim.SetBool("Idle", false);
                 anim.SetBool("Dead", true);
@@ -80,20 +94,6 @@ public class BossAI : MonoBehaviour
         }
     }
     
-    //Verifica se é seu turno
-    private void CheckTurns()
-    {
-        if (turnManager._bossTurn)
-        {
-            state = State.MyTurn;
-        }
-        else
-        {
-            state = State.WaitingForTurn;
-        }
-    }
-    
-    //Escolhe qual dos jogadores atacar
     private void ChooseTarget(float playerDice)
     {
         if (playerDice == 0)
@@ -105,29 +105,30 @@ public class BossAI : MonoBehaviour
             chosenTarget = player2;
         }
 
-        choseTarget = true;
+        targetWasChosen = true;
     }
 
-    private IEnumerator MeleeAttack()
+    private void MeleeAttack()
     {
-        yield return new WaitForSeconds(1.07f);
+        anim.SetTrigger("Melee");
 
-        meleeHitbox.SetActive(true);
+        float damage = 500;
 
-        choseTarget = false;
-
-        battleManager.EndTurn();
+        if (Vector3.Distance(transform.position, player1.transform.position) <= maxMeleeDistance)
+        {
+            status.ReciveDamage(status._spDamage + damage, true, true);
+        }
+        if (Vector3.Distance(transform.position, player2.transform.position) <= maxMeleeDistance)
+        {
+            status2.ReciveDamage(status._spDamage + damage, true, true);
+        }
     }
 
-    private IEnumerator RangedAttack()
+    private void RangedAttack()
     {
-        yield return new WaitForSeconds(1);
+        anim.SetTrigger("Ranged");
 
         Instantiate(projectile, projectileSpawn1.transform.position, Quaternion.identity);
-        Instantiate(projectile, projectileSpawn2.transform.position, Quaternion.identity);
-
-        choseTarget = false;
-
-        battleManager.EndTurn();
+        Instantiate(projectile, projectileSpawn2.transform.position, Quaternion.identity); 
     }
 }

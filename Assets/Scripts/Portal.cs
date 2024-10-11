@@ -22,6 +22,6 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene("TestesM");
+        SceneManager.LoadScene("Boss_Arena");
     }
 }

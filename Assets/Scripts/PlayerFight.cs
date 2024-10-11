@@ -12,12 +12,9 @@ public class PlayerFight : MonoBehaviour
     LayerMask clickableLayers;
 
     [SerializeField]
-    private float lookRotationSpeed;
+    GameObject destinationCollider;
 
-    [SerializeField]
-    GameObject originPoint;
-
-    PersonagemStatus status;
+    public PersonagemStatus status;
     public Personagem2Status status2;
 
     [SerializeField]
@@ -40,6 +37,28 @@ public class PlayerFight : MonoBehaviour
         AssignInputs();
     }
 
+    void Start()
+    {
+        status = GetComponent<PersonagemStatus>();
+        boss = FindAnyObjectByType<BossStatus>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        /*if (turnManager._player2Turn)
+        {
+            Debug.Log("player2 turn");
+            if (Input.GetMouseButtonDown(0))
+            {
+                boss.ReciveDamage(status2._damage, true, false);
+                turnManager._player1Turn = true;
+                turnManager._player2Turn = false;
+            }
+        }*/
+    }
+
     private void AssignInputs()
     {                                      
         input.Main.Move.performed += ctx => ClickToMove();        
@@ -52,55 +71,30 @@ public class PlayerFight : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 999, clickableLayers))
             {
-                if (Vector3.Distance(transform.position, originPoint.transform.position) <= 20)
-                {
-                    agent.destination = hit.point;
+                destinationCollider.transform.position = hit.point;
 
-                    animator.SetBool("Idle", false);
-                    animator.SetBool("Walk", true);
-                }
-                else
-                {
-                    agent.ResetPath();
-                }
+                agent.destination = hit.point;
+                    
+                animator.SetBool("Idle", false);                    
+                animator.SetBool("Walk", true);
             }
 
-            originPoint.transform.position = transform.position;
-
             canMove = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.tag == "Destination")
+        {
+            animator.SetBool("Idle", true);
+            animator.SetBool("Walk", false);
         }
     }
 
     private void OnEnable()
     {
         input.Enable();
-    }
-
-    private void OnDisable()
-    {
-        input.Disable();
-    }
-
-    void Start()
-    {
-        status = GetComponent<PersonagemStatus>();
-        //turnManager = FindAnyObjectByType<TurnManager>();
-        boss = FindAnyObjectByType<BossStatus>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        /* if(turnManager._player1Turn)
-         {
-             Debug.Log("player1 turn");
-             if(Input.GetMouseButtonDown(0))
-             {
-                 boss.ReciveDamage(status._damage, false, true);
-                 turnManager._player1Turn = false;
-                 turnManager._player2Turn = true;
-             }
-         }*/
     }
 
     public void NormalAttack()
