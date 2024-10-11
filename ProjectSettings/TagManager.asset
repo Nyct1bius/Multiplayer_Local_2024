@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Player2
   - Destination
+  - Boss
+  - Boss Projectile
   layers:
   - Default
   - TransparentFX

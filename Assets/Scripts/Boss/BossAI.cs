@@ -19,6 +19,7 @@ public class BossAI : MonoBehaviour
 
     public PersonagemStatus status;
     public Personagem2Status status2;
+    public BossStatus status3;
 
     [SerializeField]
     private float maxMeleeDistance, maxAttackDelay;
@@ -46,9 +47,14 @@ public class BossAI : MonoBehaviour
             case State.WaitingForTurn:
                 attackDelay = maxAttackDelay;
 
-                if (turnManager._bossTurn)
+                if (turnManager._bossTurn && status3._currentLife > 0)
                 {
                     state = State.MyTurn;
+                }
+
+                if (status3._currentLife <= 0)
+                {
+                    state = State.Dead;
                 }
 
                 Debug.Log("Waiting");

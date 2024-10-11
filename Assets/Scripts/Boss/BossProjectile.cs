@@ -10,20 +10,19 @@ public class BossProjectile : MonoBehaviour
     [SerializeField]
     float launchForce;
 
-    public PersonagemStatus status;
-    public Personagem2Status status2;
+    [SerializeField]
+    GameObject boss, bossChosenTarget;
 
     [SerializeField]
-    GameObject player1, player2, bossChosenTarget;
-
-    [SerializeField]
-    BossAI boss;
+    BossAI bossAI;
 
     private void Awake()
     {
-        boss = gameObject.GetComponent<BossAI>();
+        boss = GameObject.FindGameObjectWithTag("Boss");
 
-        bossChosenTarget = boss.chosenTarget;
+        bossAI = boss.GetComponent<BossAI>();   
+
+        bossChosenTarget = bossAI.chosenTarget;
     }
 
     // Start is called before the first frame update
@@ -36,10 +35,5 @@ public class BossProjectile : MonoBehaviour
     void Update()
     {
         Destroy(gameObject, 3f);
-    }
-
-    private void OnTriggerEnter(Collider col)
-    {
-
     }
 }

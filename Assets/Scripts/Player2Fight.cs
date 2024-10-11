@@ -85,12 +85,17 @@ public class Player2Fight : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
+        float projectileDamage = 100;
+
         if (col.tag == "Destination")
         {
-            Debug.Log("Stop");
-            
             animator.SetBool("Idle", true);
             animator.SetBool("Walk", false);
+        }
+
+        if (col.tag == "Boss Projectile")
+        {
+            status.ReciveDamage(boss._damage + projectileDamage, true, true);
         }
     }
 
