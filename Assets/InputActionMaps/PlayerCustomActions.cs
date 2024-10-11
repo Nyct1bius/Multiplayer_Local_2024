@@ -35,6 +35,33 @@ public partial class @PlayerCustomActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera1"",
+                    ""type"": ""Button"",
+                    ""id"": ""336c5063-ec30-443f-ac70-6468798f31a8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera2"",
+                    ""type"": ""Button"",
+                    ""id"": ""6eec81b2-9f74-47b6-a3f6-85940d100159"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera3"",
+                    ""type"": ""Button"",
+                    ""id"": ""0f19afa9-b0ee-4db0-b56f-dd689b16b0f1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -48,6 +75,39 @@ public partial class @PlayerCustomActions: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c02b16fd-832b-4acd-b58b-890faf4a544e"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc6c4532-dc60-4887-b59a-a142dea1a058"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f08f362-eb18-4c4e-9316-3e2aa2a721aa"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -57,6 +117,9 @@ public partial class @PlayerCustomActions: IInputActionCollection2, IDisposable
         // Main
         m_Main = asset.FindActionMap("Main", throwIfNotFound: true);
         m_Main_Move = m_Main.FindAction("Move", throwIfNotFound: true);
+        m_Main_Camera1 = m_Main.FindAction("Camera1", throwIfNotFound: true);
+        m_Main_Camera2 = m_Main.FindAction("Camera2", throwIfNotFound: true);
+        m_Main_Camera3 = m_Main.FindAction("Camera3", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -119,11 +182,17 @@ public partial class @PlayerCustomActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Main;
     private List<IMainActions> m_MainActionsCallbackInterfaces = new List<IMainActions>();
     private readonly InputAction m_Main_Move;
+    private readonly InputAction m_Main_Camera1;
+    private readonly InputAction m_Main_Camera2;
+    private readonly InputAction m_Main_Camera3;
     public struct MainActions
     {
         private @PlayerCustomActions m_Wrapper;
         public MainActions(@PlayerCustomActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Main_Move;
+        public InputAction @Camera1 => m_Wrapper.m_Main_Camera1;
+        public InputAction @Camera2 => m_Wrapper.m_Main_Camera2;
+        public InputAction @Camera3 => m_Wrapper.m_Main_Camera3;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -136,6 +205,15 @@ public partial class @PlayerCustomActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Camera1.started += instance.OnCamera1;
+            @Camera1.performed += instance.OnCamera1;
+            @Camera1.canceled += instance.OnCamera1;
+            @Camera2.started += instance.OnCamera2;
+            @Camera2.performed += instance.OnCamera2;
+            @Camera2.canceled += instance.OnCamera2;
+            @Camera3.started += instance.OnCamera3;
+            @Camera3.performed += instance.OnCamera3;
+            @Camera3.canceled += instance.OnCamera3;
         }
 
         private void UnregisterCallbacks(IMainActions instance)
@@ -143,6 +221,15 @@ public partial class @PlayerCustomActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @Camera1.started -= instance.OnCamera1;
+            @Camera1.performed -= instance.OnCamera1;
+            @Camera1.canceled -= instance.OnCamera1;
+            @Camera2.started -= instance.OnCamera2;
+            @Camera2.performed -= instance.OnCamera2;
+            @Camera2.canceled -= instance.OnCamera2;
+            @Camera3.started -= instance.OnCamera3;
+            @Camera3.performed -= instance.OnCamera3;
+            @Camera3.canceled -= instance.OnCamera3;
         }
 
         public void RemoveCallbacks(IMainActions instance)
@@ -163,5 +250,8 @@ public partial class @PlayerCustomActions: IInputActionCollection2, IDisposable
     public interface IMainActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnCamera1(InputAction.CallbackContext context);
+        void OnCamera2(InputAction.CallbackContext context);
+        void OnCamera3(InputAction.CallbackContext context);
     }
 }

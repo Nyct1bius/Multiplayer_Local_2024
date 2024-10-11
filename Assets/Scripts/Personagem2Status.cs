@@ -17,9 +17,9 @@ public class Personagem2Status : MonoBehaviour
     // status
     public float _life = 1000;
     public float _sp = 500;
-    public float _damage = 350;
+    public float _damage = 250;
     public float _defense = 5;
-    public float _spDamage = 500;
+    public float _spDamage = 400;
     public float _spDefense = 6;
     public float _moveArea; // quantos tiles pode mover por rodada 
 

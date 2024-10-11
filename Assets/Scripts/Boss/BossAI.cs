@@ -33,6 +33,8 @@ public class BossAI : MonoBehaviour
     [SerializeField]
     private bool targetWasChosen = false;
 
+    private int attackDice;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,17 +66,19 @@ public class BossAI : MonoBehaviour
                 if (!targetWasChosen)
                 {
                     ChooseTarget(Random.Range(0, 2));
-                }
+                }                
 
                 if (attackDelay <= 0)
                 {
                     transform.LookAt(chosenTarget.transform.position);
-                    
-                    if (Vector3.Distance(transform.position, chosenTarget.transform.position) <= maxMeleeDistance)
+
+                    attackDice = Random.Range(0, 2);
+
+                    if (attackDice == 0)
                     {
                         MeleeAttack();
                     }
-                    else
+                    if (attackDice == 1)
                     {
                         RangedAttack();
                     }
@@ -118,15 +122,15 @@ public class BossAI : MonoBehaviour
     {
         anim.SetTrigger("Melee");
 
-        float damage = 500;
+        float meleeDamage = 300;
 
         if (Vector3.Distance(transform.position, player1.transform.position) <= maxMeleeDistance)
         {
-            status.ReciveDamage(status._spDamage + damage, true, true);
+            status.ReciveDamage(status3._damage + meleeDamage, true, true);
         }
         if (Vector3.Distance(transform.position, player2.transform.position) <= maxMeleeDistance)
         {
-            status2.ReciveDamage(status._spDamage + damage, true, true);
+            status2.ReciveDamage(status3._damage + meleeDamage, true, true);
         }
     }
 
@@ -134,7 +138,13 @@ public class BossAI : MonoBehaviour
     {
         anim.SetTrigger("Ranged");
 
+        float rangedDamage = 150;
+
         Instantiate(fireExplosion, projectileSpawn1.transform.position, Quaternion.identity);
         Instantiate(fireExplosion, projectileSpawn2.transform.position, Quaternion.identity);
+
+        status.ReciveDamage(status3._damage + rangedDamage, true, true);
+
+        status2.ReciveDamage(status3._damage + rangedDamage, true, true);
     }
 }

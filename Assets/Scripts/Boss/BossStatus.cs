@@ -9,10 +9,10 @@ public class BossStatus : MonoBehaviour
 
     public string _name;
 
-    public float _life = 5000f;
-    public float _damage = 500f;
+    public float _life = 3000f;
+    public float _damage = 300f;
     public float _defense = 10f;
-    public float _magicDamage = 600f;
+    public float _magicDamage = 450f;
     public float _magicDefense = 11f;
 
     public float _currentLife;

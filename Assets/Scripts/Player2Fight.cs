@@ -208,7 +208,7 @@ public class Player2Fight : MonoBehaviour
 
     public void SpAttack3()
     {
-        float damage = 2000;
+        float damage = 1600;
 
         if (!selected)
         {

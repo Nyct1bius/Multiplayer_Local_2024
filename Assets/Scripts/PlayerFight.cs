@@ -92,18 +92,11 @@ public class PlayerFight : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider col)
-    {
-        float projectileDamage = 100;
-        
+    {        
         if (col.tag == "Destination")
         {
             animator.SetBool("Idle", true);
             animator.SetBool("Walk", false);
-        }
-
-        if (col.tag == "Boss Projectile")
-        {
-            status.ReciveDamage(boss._damage + projectileDamage, true, true);
         }
     }
 
@@ -209,7 +202,7 @@ public class PlayerFight : MonoBehaviour
 
     public void SpAttack3()
     {
-        float damage = 2000;
+        float damage = 1600;
 
         if (!selected)
         {
