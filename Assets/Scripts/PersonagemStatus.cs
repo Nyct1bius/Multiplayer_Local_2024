@@ -65,9 +65,9 @@ public class PersonagemStatus : MonoBehaviour
         _currentLife = _life;
         _currentSP = _sp;
 
-        Debug.Log("currentLife on Status: " + _currentLife);
+        /*Debug.Log("currentLife on Status: " + _currentLife);
         Debug.Log("SP on Status: " + _sp);
-        Debug.Log("currentSp on Status: " + _currentSP);
+        Debug.Log("currentSp on Status: " + _currentSP);*/
     }
 
     public void BlessingEfect()

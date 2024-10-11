@@ -273,6 +273,6 @@ public class Vitoria : MonoBehaviour
     public void Continuar()
     {
         _audioManager.PlaySFX(_audioManager.botao);
-        SceneManager.LoadScene("TestesM");
+        SceneManager.LoadScene("Boss_Arena");
     }
 }

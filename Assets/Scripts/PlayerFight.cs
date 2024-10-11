@@ -62,13 +62,13 @@ public class PlayerFight : MonoBehaviour
     }
 
     private void AssignInputs()
-    {                                      
-        input.Main.Move.performed += ctx => ClickToMove();        
+    {
+        input.Main.Move.performed += ctx => ClickToMove();
     }
 
     private void ClickToMove()
     {
-        if (turnManager._player1Turn && canMove)
+        if (turnManager._player1Turn && canMove && status._currentLife > 0)
         {
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 999, clickableLayers))

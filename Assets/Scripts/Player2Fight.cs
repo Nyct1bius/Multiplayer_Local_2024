@@ -62,13 +62,13 @@ public class Player2Fight : MonoBehaviour
     }
 
     private void AssignInputs()
-    {            
+    {
         input.Main.Move.performed += ctx => ClickToMove();
     }
 
     private void ClickToMove()
     {
-        if (turnManager._player2Turn && canMove)
+        if (turnManager._player2Turn && canMove && status2._currentLife > 0)
         {
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 999, clickableLayers))

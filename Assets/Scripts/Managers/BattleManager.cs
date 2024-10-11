@@ -91,9 +91,9 @@ public class BattleManager : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 // Verifica se o objeto clicado tem o componente específico, por exemplo "Player"
-                if (hit.transform.CompareTag("Player") && _turnManager._player1Turn && !_playerFight.selected)
+                if (hit.transform.CompareTag("Player") && _turnManager._player1Turn && !_playerFight.selected && _status._currentLife > 0)
                 {
-                    Debug.Log("Jogador clicado: " + hit.transform.name);
+                    //Debug.Log("Jogador clicado: " + hit.transform.name);
                     Player1Status();
                     _perfilImage.sprite = PerfilImages[0];
                     _statusUI.SetActive(true);
@@ -108,7 +108,7 @@ public class BattleManager : MonoBehaviour
                     _spBarText.text = _status._currentSP.ToString();
 
                 }
-                else if(hit.transform.CompareTag("Player2") && _turnManager._player2Turn && !_player2Fight.selected)
+                else if(hit.transform.CompareTag("Player2") && _turnManager._player2Turn && !_player2Fight.selected && _status2._currentLife > 0)
                 {
                     Player2Status();
                     _perfilImage.sprite = PerfilImages[1];
@@ -167,15 +167,22 @@ public class BattleManager : MonoBehaviour
     {
         if(_turnManager._player1Turn)
         {
+            Debug.Log("player 2 turn ");
             _turnManager._player1Turn = false;
             _turnManager._bossTurn = false;
             _turnManager._player2Turn = true;
             _playerFight.selected = false;
             _player2Fight.selected = false;
             _playerFight.canMove = true;
+
+            if(_status2._currentLife <= 0)
+            {
+                EndTurn();
+            }
         }
         else if(_turnManager._player2Turn)
         {
+            Debug.Log("Boss turn ");
             _turnManager._player2Turn = false;
             _turnManager._bossTurn = true;
             _turnManager._player1Turn = false;
@@ -183,13 +190,19 @@ public class BattleManager : MonoBehaviour
             _player2Fight.selected = false;
             _player2Fight.canMove = true;
         }
-        else // boss turn
+        else// player1 turn
         {
+            Debug.Log("Player 1 turn ");
             _turnManager._player2Turn = false;
             _turnManager._bossTurn = false;
             _turnManager._player1Turn = true;
             _playerFight.selected = false;
             _player2Fight.selected = false;
+
+            if (_status._currentLife <= 0)
+            {
+                EndTurn();
+            }
         }
     }
 

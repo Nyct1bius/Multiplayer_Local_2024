@@ -57,7 +57,7 @@ public class BossAI : MonoBehaviour
                     state = State.Dead;
                 }
 
-                Debug.Log("Waiting");
+                Debug.Log("Boss is Waiting");
                 break;
 
             case State.MyTurn:
@@ -90,7 +90,7 @@ public class BossAI : MonoBehaviour
                     attackDelay -= Time.deltaTime;
                 }
 
-                Debug.Log("MyTurn");
+               // Debug.Log("BossTurn");
                 break;
 
             case State.Dead:
