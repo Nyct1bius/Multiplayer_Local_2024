@@ -35,6 +35,10 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField]
     HealthBar _healthBar;
+
+    [SerializeField]
+    HealthBar _bossHealthBar;
+
     [SerializeField]
     SpecialBar _specialBar;
 
@@ -76,6 +80,9 @@ public class BattleManager : MonoBehaviour
             // Cria um raio da posição da câmera até a posição do mouse na tela
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+
+            _bossHealthBar.SetMaxHealth(_boss._life);
+            _bossHealthBar.SetHealth(_boss._currentLife);
 
             // Faz o Raycast e verifica se colidiu com algo
             if (Physics.Raycast(ray, out hit))

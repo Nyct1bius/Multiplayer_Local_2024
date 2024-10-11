@@ -244,16 +244,16 @@ public class Vitoria : MonoBehaviour
         // player1
         PlayerPrefs.SetFloat("Player1Life", 1000);
         PlayerPrefs.SetFloat("Player1Damage", 350);
-        PlayerPrefs.SetFloat("Player1Defense", 100);
+        PlayerPrefs.SetFloat("Player1Defense", 5);
         PlayerPrefs.SetFloat("Player1spDamage", 500);
-        PlayerPrefs.SetFloat("Player1spDefense", 150);
+        PlayerPrefs.SetFloat("Player1spDefense", 6);
 
         // player2
         PlayerPrefs.SetFloat("Player2Life", 1000);
         PlayerPrefs.SetFloat("Player2Damage", 350);
-        PlayerPrefs.SetFloat("Player2Defense", 100);
+        PlayerPrefs.SetFloat("Player2Defense", 5);
         PlayerPrefs.SetFloat("Player2spDamage", 500);
-        PlayerPrefs.SetFloat("Player2spDefense", 150);
+        PlayerPrefs.SetFloat("Player2spDefense", 6);
     }
 
     public void Fim()

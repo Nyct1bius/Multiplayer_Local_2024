@@ -35,17 +35,17 @@ public class HUDmenu : MonoBehaviour
     float _life = 1000;
     float _sp = 500;
     float _damage = 350;
-    float _defense = 100;
+    float _defense = 5;
     float _spDamage = 500;
-    float _spDefense = 150;
+    float _spDefense = 6;
 
     //player2
     float _life2 = 1000;
     float _sp2 = 500;
     float _damage2 = 350;
-    float _defense2 = 100;
+    float _defense2 = 5;
     float _spDamage2 = 500;
-    float _spDefense2 = 150;
+    float _spDefense2 = 6;
 
     void Start()
     {
@@ -116,17 +116,17 @@ public class HUDmenu : MonoBehaviour
              _life = 1000;
              _sp = 500;
              _damage = 350;
-             _defense = 100;
+             _defense = 5;
              _spDamage = 500;
-             _spDefense = 150;
+             _spDefense = 6;
 
             //player2
              _life2 = 1000;
              _sp2 = 500;
              _damage2 = 350;
-             _defense2 = 100;
+             _defense2 = 5;
              _spDamage2 = 500;
-             _spDefense2 = 150;
+             _spDefense2 = 6;
         }
     }
 
