@@ -7089,6 +7089,7 @@ MonoBehaviour:
   _player2TD: 0
   _isVictory: 0
   NameText: {fileID: 1178286471}
+  _perfilImage: {fileID: 53454656}
   HpText: {fileID: 1179872558}
   AtkText: {fileID: 326590146}
   DefText: {fileID: 745506918}
@@ -7099,6 +7100,9 @@ MonoBehaviour:
   _closeButton: {fileID: 1754571200}
   _lifeBarText: {fileID: 879635447}
   _spBarText: {fileID: 751902294}
+  PerfilImages:
+  - {fileID: 21300000, guid: afa34a31908eabe49ad2deabd652a9c4, type: 3}
+  - {fileID: 21300000, guid: 01322952286492144b5b7b3bcbb38cdf, type: 3}
 --- !u!1 &1007792531
 GameObject:
   m_ObjectHideFlags: 0

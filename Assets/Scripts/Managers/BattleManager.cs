@@ -53,6 +53,7 @@ public class BattleManager : MonoBehaviour
     public TextMeshProUGUI NameText;
 
     [Header("StatusText")]
+    public Image _perfilImage;
     public TextMeshProUGUI HpText;
     public TextMeshProUGUI AtkText;
     public TextMeshProUGUI DefText;
@@ -65,6 +66,8 @@ public class BattleManager : MonoBehaviour
 
     public TextMeshProUGUI _lifeBarText;
     public TextMeshProUGUI _spBarText;
+
+    public Sprite[] PerfilImages;
 
     // Start is called before the first frame update
     void Start()
@@ -92,6 +95,7 @@ public class BattleManager : MonoBehaviour
                 {
                     Debug.Log("Jogador clicado: " + hit.transform.name);
                     Player1Status();
+                    _perfilImage.sprite = PerfilImages[0];
                     _statusUI.SetActive(true);
                     _closeButton.SetActive(true);
                     _attackBox2.SetActive(false);
@@ -107,6 +111,7 @@ public class BattleManager : MonoBehaviour
                 else if(hit.transform.CompareTag("Player2") && _turnManager._player2Turn && !_player2Fight.selected)
                 {
                     Player2Status();
+                    _perfilImage.sprite = PerfilImages[1];
                     _statusUI.SetActive(true);
                     _closeButton.SetActive(true);
                     _attackBox1.SetActive(false);
