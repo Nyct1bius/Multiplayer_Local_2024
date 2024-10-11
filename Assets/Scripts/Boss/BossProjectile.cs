@@ -28,6 +28,8 @@ public class BossProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bossChosenTarget = bossAI.chosenTarget;
+
         rb.AddForce(bossChosenTarget.transform.position * launchForce, ForceMode.Impulse);
     }
 

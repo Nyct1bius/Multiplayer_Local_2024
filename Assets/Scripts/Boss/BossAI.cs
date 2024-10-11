@@ -28,7 +28,7 @@ public class BossAI : MonoBehaviour
     public Animator anim;
 
     [SerializeField]
-    private GameObject meleeHitbox, projectile, projectileSpawn1, projectileSpawn2;
+    private GameObject meleeHitbox, projectile, projectileSpawn1, projectileSpawn2, fireExplosion;
 
     [SerializeField]
     private bool targetWasChosen = false;
@@ -72,16 +72,16 @@ public class BossAI : MonoBehaviour
                     
                     if (Vector3.Distance(transform.position, chosenTarget.transform.position) <= maxMeleeDistance)
                     {
-                        MeleeAttack();   
+                        MeleeAttack();
                     }
                     else
                     {
                         RangedAttack();
                     }
 
-                    state = State.WaitingForTurn;
-
                     battleManager.EndTurn();
+
+                    state = State.WaitingForTurn;
 
                     targetWasChosen = false;
                 }
@@ -134,7 +134,7 @@ public class BossAI : MonoBehaviour
     {
         anim.SetTrigger("Ranged");
 
-        Instantiate(projectile, projectileSpawn1.transform.position, Quaternion.identity);
-        Instantiate(projectile, projectileSpawn2.transform.position, Quaternion.identity); 
+        Instantiate(fireExplosion, projectileSpawn1.transform.position, Quaternion.identity);
+        Instantiate(fireExplosion, projectileSpawn2.transform.position, Quaternion.identity);
     }
 }

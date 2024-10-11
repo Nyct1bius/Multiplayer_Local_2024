@@ -69,6 +69,8 @@ public class BattleManager : MonoBehaviour
 
     public Sprite[] PerfilImages;
 
+    private float victoryTimer = 4;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -215,8 +217,15 @@ public class BattleManager : MonoBehaviour
     {
         if(!_isVictory)
         {
-            SceneManager.LoadScene("Vitoria", LoadSceneMode.Additive);
-            _isVictory = true;
+            if (victoryTimer <= 0)
+            {
+                SceneManager.LoadScene("Vitoria", LoadSceneMode.Additive);
+                _isVictory = true;
+            }
+            else
+            {
+                victoryTimer -= Time.deltaTime;
+            }
         }
     }
 

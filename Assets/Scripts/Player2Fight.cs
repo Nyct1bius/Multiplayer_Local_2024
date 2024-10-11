@@ -12,7 +12,7 @@ public class Player2Fight : MonoBehaviour
     LayerMask clickableLayers;
 
     [SerializeField]
-    GameObject destinationCollider;
+    GameObject destinationCollider, orbExplosion, lightningExplosion, fireExplosion, effectPoint;
 
     public PersonagemStatus status;
     public Personagem2Status status2;
@@ -26,7 +26,7 @@ public class Player2Fight : MonoBehaviour
     [SerializeField]
     Animator animator;
 
-    public bool selected = false, canMove = true;
+    public bool selected = false, canMove = true, tookDamage = false;
 
     private void Awake()
     {
@@ -57,6 +57,13 @@ public class Player2Fight : MonoBehaviour
                 turnManager._player2Turn = false;
             }
         }*/
+
+        if (tookDamage)
+        {
+            animator.SetTrigger("Hit");
+
+            tookDamage = false; 
+        }
 
         Die();
     }
@@ -159,6 +166,8 @@ public class Player2Fight : MonoBehaviour
 
                 animator.SetTrigger("SuperAttack");
 
+                Instantiate(fireExplosion, effectPoint.transform.position, Quaternion.identity);
+
                 // diminuir sp
                 status2._currentSP -= 50;
                 // se jogador estiver a certa distancia do player 2 o ataque vai pergar o player2 tb
@@ -182,6 +191,8 @@ public class Player2Fight : MonoBehaviour
                 boss.ReciveDamage(status2._spDamage + damage, true, false);
 
                 animator.SetTrigger("SuperAttack");
+
+                Instantiate(orbExplosion, effectPoint.transform.position, Quaternion.identity);
 
                 // diminuir sp
                 status2._currentSP -= 100;
@@ -208,6 +219,8 @@ public class Player2Fight : MonoBehaviour
 
                 animator.SetTrigger("SuperAttack");
 
+                Instantiate(lightningExplosion, effectPoint.transform.position, Quaternion.identity);
+
                 // diminuir sp
                 status2._currentSP -= 150;
 
@@ -223,11 +236,13 @@ public class Player2Fight : MonoBehaviour
 
     private void Die()
     {
-        if (status._currentLife <= 0)
+        if (status2._currentLife <= 0)
         {
             animator.SetBool("Idle", false);
             animator.SetBool("Walk", false);
-            animator.SetBool("Dead", true);
+            animator.SetBool("Death", true);
+
+            Debug.Log("Died");
         }
     }
 }

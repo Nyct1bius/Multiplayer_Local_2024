@@ -30,6 +30,9 @@ public class PersonagemStatus : MonoBehaviour
     public float _currentSP;
     public float _player1TD;
 
+    [SerializeField]
+    PlayerFight myPlayer;
+
     void Start()
     {
         if (gameManager == null)
@@ -145,6 +148,6 @@ public class PersonagemStatus : MonoBehaviour
             }
         }
 
-        
+        myPlayer.tookDamage = true;
     }
 }
